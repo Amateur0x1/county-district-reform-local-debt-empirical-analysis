@@ -1,6 +1,1 @@
-import pandas as pd
-from const import data_path
-
-df = pd.read_excel(data_path)
-
-print(df.head())
+from lib.read_data import df_first_sheet
