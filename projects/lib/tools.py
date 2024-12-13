@@ -1,5 +1,4 @@
 import pandas as pd
-from lib.const import Constant
 import shutil
 import time
 from functools import wraps
@@ -118,6 +117,15 @@ class Tools:
             raise ValueError(f"写入 Excel 文件失败: {e}")
 
         print(f"文件已成功排序并保存: {filename}")
+    
+    # 如果 sheet 中的某个 column_name 存在于传入的 column_names 列表中，那么替换为 new_column_name 的方法
+    @staticmethod
+    def replace_column_name(data: pd.DataFrame, column_names: list[str], new_column_name: str) -> pd.DataFrame:
+        for column_name in column_names:
+            if column_name in data.columns:
+                data.rename(columns={column_name: new_column_name}, inplace=True)
+                break
+        return data
 
     @staticmethod
     def panel_to_long(data, id_vars: list, value_vars: list, var_name: str, value_name: str) -> pd.DataFrame:

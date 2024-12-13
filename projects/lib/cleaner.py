@@ -49,6 +49,14 @@ class DataCleaner:
             self.data = Tools.panel_to_long(self.data, long_format_params.id_vars, long_format_params.value_vars, long_format_params.var_name, long_format_params.value_name)
 
     @timeit
+    def replace_column_name(self, column_names: list[str], new_column_name: str):
+        print(self.data.columns)
+        for column_name in column_names:
+            if column_name in self.data.columns:
+                self.data = self.data.rename(columns={column_name: new_column_name}, inplace=True)
+                break
+
+    @timeit
     def clean_column_data(self, column_name: str, replace_value: str) -> None:
         """
         根据指定的列名和替换值清理数据

@@ -1,18 +1,16 @@
 from lib import *
+from workflow import Workflow
+from const import *
+
 class DataTransform:
     def __init__(self, data):
         self.data = data
 
 # 清理地级市经济增长目标数据表
-def process_economic_target_data(output_file):
-    # read data to get cities and years
-    reader = ExcelReader(output_file)
-    cities = Tools.clean_empty_data(reader.read_column('城市对应', '选中城市'))
-    years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-
+def process_economic_target_data(file_name, cities, years):
     # clean data in sheet '地级市经济增长目标数据'
     city_target_cleaner = DataCleaner(
-        file_path=output_file,
+        file_path=file_name,
         sheet_name='地级市经济增长目标数据',
         is_long_format=False,
         long_format_params=LongFormatParams(
@@ -34,16 +32,10 @@ def process_economic_target_data(output_file):
     city_target_cleaner.close_file_and_save()
 
 # 清理省级经济增长目标数据表
-def process_province_target_data(output_file):
-    # read data to get cities and years
-    reader = ExcelReader(output_file)
-    provinces = list(dict.fromkeys(Tools.clean_empty_data(reader.read_column('市长', '省份'))))
-    print(provinces)
-    years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-
+def process_province_target_data(file_name, provinces, years):
     # clean data in sheet '省级经济增长目标数据'
     province_target_cleaner = DataCleaner(
-        file_path=output_file,
+        file_path=file_name,
         sheet_name='省级经济增长目标数据',
         is_long_format=False,
         long_format_params=LongFormatParams(
@@ -60,18 +52,287 @@ def process_province_target_data(output_file):
         sort_priority=['province', 'year'],
         sort_orders={'province': provinces, 'year': years}
     )
+
     province_target_cleaner.close_file_and_save()
 
-# 清理地方债务数据中的财政自给率
-def process_debt_data(output_file):
-    reader = ExcelReader(output_file)
+# 清理地方政府债务数据中的城投平台有息债务亿元
+def process_debt_data(file_name, cities, years):
+    # clean data in sheet '地级市经济增长目标数据'
+    city_target_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='地方政府债务数据',
+    )
+
+    city_target_cleaner.clean_column_data('地级市', '市')
+    city_target_cleaner.clean_data_keep_values('地级市', cities)
+    city_target_cleaner.clean_data_keep_values('年份', years)
+
+    city_target_cleaner.rearrange_data(
+        sort_priority=['地级市', '年份'],
+        sort_orders={'地级市': cities, '年份': years}
+    )
+
+    city_target_cleaner.interpolate_missing_data('财政自给率', '地级市', '年份')
+    city_target_cleaner.interpolate_missing_data('城投平台有息债务亿元', '地级市', '年份')
+    city_target_cleaner.interpolate_missing_data('GDP亿元', '地级市', '年份')
+
+    # write data to sheet '地方债务数据'
+    city_target_cleaner.close_file_and_save()
+
+# 清理财政自给率
+def process_finance_self_sufficiency_data(file_name, cities, years):
+    
+    # clean data in sheet '财政自给率'
+    finance_self_sufficiency_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='财政自给率',
+    )
+
+    finance_self_sufficiency_cleaner.clean_column_data('地级市', '市')
+    finance_self_sufficiency_cleaner.clean_data_keep_values('地级市', cities)
+    finance_self_sufficiency_cleaner.clean_data_keep_values('年份', years)
+
+    finance_self_sufficiency_cleaner.rearrange_data(
+        sort_priority=['地级市', '年份'],
+        sort_orders={'地级市': cities, '年份': years}
+    )
+
+    finance_self_sufficiency_cleaner.interpolate_missing_data('财政自给率', '地级市', '年份')
+
+    # write data to sheet '财政自给率'
+    finance_self_sufficiency_cleaner.close_file_and_save()
+
+# 处理土地出让收入数据
+def process_land_sale_income_data(file_name, cities, years):
+
+    # clean data in sheet '土地出让收入'
+    land_sale_income_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='土地出让收入',
+    )
+
+    land_sale_income_cleaner.clean_column_data('地区', '市')
+    land_sale_income_cleaner.clean_data_keep_values('地区', cities)
+    land_sale_income_cleaner.clean_data_keep_values('年份', years)
+
+    land_sale_income_cleaner.rearrange_data(
+        sort_priority=['地区', '年份'],
+        sort_orders={'地区': cities, '年份': years}
+    )
+
+    # write data to sheet '土地出让收入'
+    land_sale_income_cleaner.close_file_and_save()
+
+# 处理市长数据
+def process_mayor_data(file_name, cities, years):
+    # clean data in sheet '市长'
+    mayor_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='市长',
+    )
+
+    mayor_cleaner.clean_column_data('城市', '市')
+    mayor_cleaner.clean_data_keep_values('城市', cities)
+    mayor_cleaner.clean_data_keep_values('年份', years)
+
+    mayor_cleaner.rearrange_data(
+        sort_priority=['城市', '年份'],
+        sort_orders={'城市': cities, '年份': years}
+    )
+
+    # write data to sheet '市长'
+    mayor_cleaner.close_file_and_save()
+
+
+# 处理商业银行数据
+def process_commercial_bank_data(file_name, cities, years):
+    # clean data in sheet '商业银行'
+    commercial_bank_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='商业银行数据',
+    )
+
+    commercial_bank_cleaner.clean_column_data('城市', '市')
+    commercial_bank_cleaner.clean_data_keep_values('城市', cities)
+    commercial_bank_cleaner.clean_data_keep_values('year', years)
+
+    commercial_bank_cleaner.rearrange_data(
+        sort_priority=['城市', 'year'],
+        sort_orders={'城市': cities, 'year': years}
+    )
+
+    commercial_bank_cleaner.interpolate_missing_data('贷款总额亿元', '城市', 'year')
+
+    # write data to sheet '商业银行'
+    commercial_bank_cleaner.close_file_and_save()
+
+# 处理灯光数据
+def process_light_data(file_name, cities, years):
     years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-    reader.read_column('地方债务数据', '年份')
+
+    # clean data in sheet '灯光数据'
+    light_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='灯光数据',
+        is_long_format=False,
+        long_format_params=LongFormatParams(
+            id_vars=['CITY', 'PR','PR_ID', 'PR_TYPE', 'CITY_ID', 'CITY_TYPE'],
+            value_vars=years,
+            var_name='year',
+            value_name='light'
+        )
+    )
+
+    light_cleaner.clean_column_data('CITY', '市')
+    light_cleaner.clean_data_keep_values('CITY', cities)
+    light_cleaner.clean_data_keep_values('year', years)
+
+    light_cleaner.rearrange_data(
+        sort_priority=['CITY', 'year'],
+        sort_orders={'CITY': cities, 'year': years}
+    )
+
+    # write data to sheet '灯光数据'
+    light_cleaner.close_file_and_save()
+
+# 处理控制变量
+def process_control_variable_data(file_name, cities, years):
+    # clean data in sheet '控制变量'
+    control_variable_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='控制变量',
+    )
+
+    control_variable_cleaner.clean_column_data('city', '市')
+    control_variable_cleaner.clean_data_keep_values('city', cities)
+    control_variable_cleaner.clean_data_keep_values('year', years)
+
+    control_variable_cleaner.rearrange_data(
+        sort_priority=['city', 'year'],
+        sort_orders={'city': cities, 'year': years}
+    )
+
+    # write data to sheet '控制变量'
+    control_variable_cleaner.close_file_and_save()
+
+# 处理撤县设区数据
+def process_county_to_district_data(file_name, cities, years):
+    # clean data in sheet '撤县设区'
+    county_to_district_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='撤县设区',
+    )
+
+    county_to_district_cleaner.clean_column_data('city', '市')
+    county_to_district_cleaner.clean_data_keep_values('city', cities)
+    county_to_district_cleaner.clean_data_keep_values('year', years)
+
+    county_to_district_cleaner.rearrange_data(
+        sort_priority=['city', 'year'],
+        sort_orders={'city': cities, 'year': years}
+    )
+
+    # write data to sheet '撤县设区'
+    county_to_district_cleaner.close_file_and_save()
+
+# 处理财政支出与收入
+def process_finance_expenditure_and_income_data(file_name, cities, years):
+    # clean data in sheet '财政支出与收入'
+    finance_expenditure_and_income_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='财政支出与收入',
+    )
+
+    finance_expenditure_and_income_cleaner.clean_column_data('地区', '市')
+    finance_expenditure_and_income_cleaner.clean_data_keep_values('地区', cities)
+    finance_expenditure_and_income_cleaner.clean_data_keep_values('年份', years)
+
+    finance_expenditure_and_income_cleaner.rearrange_data(
+        sort_priority=['地区', '年份'],
+        sort_orders={'地区': cities, '年份': years}
+    )
+
+    # write data to sheet '财政支出与收入'
+    finance_expenditure_and_income_cleaner.close_file_and_save()
+
+# 处理行政力量数据
+def process_administrative_power_data(file_name, cities, years):
+    # clean data in sheet '行政力量数据'
+    administrative_power_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='行政力量数据',
+    )
+
+    administrative_power_cleaner.clean_column_data('city', '市')
+    administrative_power_cleaner.clean_data_keep_values('city', cities)
+    administrative_power_cleaner.clean_data_keep_values('year', years)
+
+    administrative_power_cleaner.rearrange_data(
+        sort_priority=['city', 'year'],
+        sort_orders={'city': cities, 'year': years}
+    )
+
+    # write data to sheet '行政力量数据'
+    administrative_power_cleaner.close_file_and_save()
+
+# 处理财政自给率
+def process_finance_self_sufficiency_data(file_name, cities, years):
+    # clean data in sheet '财政自给率'
+    finance_self_sufficiency_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='财政自给率',
+    )
+
+    finance_self_sufficiency_cleaner.clean_column_data('地级市', '市')
+    finance_self_sufficiency_cleaner.clean_data_keep_values('地级市', cities)
+    finance_self_sufficiency_cleaner.clean_data_keep_values('年份', years)
+
+    finance_self_sufficiency_cleaner.rearrange_data(
+        sort_priority=['地级市', '年份'],
+        sort_orders={'地级市': cities, '年份': years}
+    )
+
+    # write data to sheet '财政自给率'
+    finance_self_sufficiency_cleaner.close_file_and_save()
+
+# 处理固定资产投资存量与增量
+def process_fixed_asset_investment_data(file_name, cities, years):
+    # clean data in sheet '固定资产投资存量与增量'
+    fixed_asset_investment_cleaner = DataCleaner(
+        file_path=file_name,
+        sheet_name='固定资产投资存量与增量',
+    )
+
+    fixed_asset_investment_cleaner.clean_column_data('城市', '市')
+    fixed_asset_investment_cleaner.clean_data_keep_values('城市', cities)
+    fixed_asset_investment_cleaner.clean_data_keep_values('年份', years)
+
+    fixed_asset_investment_cleaner.rearrange_data(
+        sort_priority=['城市', '年份'],
+        sort_orders={'城市': cities, '年份': years}
+    )
+
+    # write data to sheet '固定资产投资存量与增量'
+    fixed_asset_investment_cleaner.close_file_and_save()
+
+def process_data(file_name):
+    # process_economic_target_data(file_name, Constant.cities, Constant.years)
+    # process_province_target_data(file_name, Constant.provinces, Constant.years)
+    # process_debt_data(file_name, Constant.cities, Constant.years)
+    # process_land_sale_income_data(file_name, Constant.cities, Constant.years)
+    # process_mayor_data(file_name, Constant.cities, Constant.years)
+    # process_commercial_bank_data(file_name, Constant.cities, Constant.years)
+    # process_light_data(file_name, Constant.cities, Constant.years)
+    # process_control_variable_data(file_name, Constant.cities, Constant.years)
+    # process_county_to_district_data(file_name, Constant.cities, Constant.years)
+    # process_finance_expenditure_and_income_data(file_name, Constant.cities, Constant.years)
+    process_administrative_power_data(file_name, Constant.cities, Constant.years)
+    # process_finance_self_sufficiency_data(file_name, Constant.cities, Constant.years)
+    # process_fixed_asset_investment_data(file_name, Constant.cities, Constant.years)
 
 def main(input_file, output_file):
     Tools.copy_file(input_file, output_file)
-    # process_economic_target_data(output_file)
-    # process_province_target_data(output_file)
+    process_data(output_file)
 
 if __name__ == "__main__":
     input_file = "projects/data/data.xlsx"
