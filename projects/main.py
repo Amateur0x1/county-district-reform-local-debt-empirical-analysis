@@ -168,8 +168,6 @@ def process_commercial_bank_data(file_name, cities, years):
 
 # 处理灯光数据
 def process_light_data(file_name, cities, years):
-    years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-
     # clean data in sheet '灯光数据'
     light_cleaner = DataCleaner(
         file_path=file_name,
@@ -316,25 +314,25 @@ def process_fixed_asset_investment_data(file_name, cities, years):
     fixed_asset_investment_cleaner.close_file_and_save()
 
 def process_data(file_name):
-    # process_economic_target_data(file_name, Constant.cities, Constant.years)
-    # process_province_target_data(file_name, Constant.provinces, Constant.years)
-    # process_debt_data(file_name, Constant.cities, Constant.years)
-    # process_land_sale_income_data(file_name, Constant.cities, Constant.years)
-    # process_mayor_data(file_name, Constant.cities, Constant.years)
-    # process_commercial_bank_data(file_name, Constant.cities, Constant.years)
-    # process_light_data(file_name, Constant.cities, Constant.years)
-    # process_control_variable_data(file_name, Constant.cities, Constant.years)
-    # process_county_to_district_data(file_name, Constant.cities, Constant.years)
-    # process_finance_expenditure_and_income_data(file_name, Constant.cities, Constant.years)
+    process_economic_target_data(file_name, Constant.cities, Constant.years)
+    process_province_target_data(file_name, Constant.provinces, Constant.years)
+    process_debt_data(file_name, Constant.cities, Constant.years)
+    process_land_sale_income_data(file_name, Constant.cities, Constant.years)
+    process_mayor_data(file_name, Constant.cities, Constant.years)
+    process_commercial_bank_data(file_name, Constant.cities, Constant.years)
+    process_light_data(file_name, Constant.cities, Constant.years)
+    process_control_variable_data(file_name, Constant.cities, Constant.years)
+    process_county_to_district_data(file_name, Constant.cities, Constant.years)
+    process_finance_expenditure_and_income_data(file_name, Constant.cities, Constant.years)
     process_administrative_power_data(file_name, Constant.cities, Constant.years)
-    # process_finance_self_sufficiency_data(file_name, Constant.cities, Constant.years)
-    # process_fixed_asset_investment_data(file_name, Constant.cities, Constant.years)
+    process_finance_self_sufficiency_data(file_name, Constant.cities, Constant.years)
+    process_fixed_asset_investment_data(file_name, Constant.cities, Constant.years)
 
 def main(input_file, output_file):
     Tools.copy_file(input_file, output_file)
     process_data(output_file)
 
 if __name__ == "__main__":
-    input_file = "projects/data/data.xlsx"
+    input_file = "projects/data/data_copy.xlsx"
     output_file = "projects/data/data_cleaning.xlsx"
     main(input_file, output_file)
