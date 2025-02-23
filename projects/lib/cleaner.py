@@ -174,6 +174,61 @@ class DataCleaner:
             print(f"警告: 仍有 {remaining_na} 个缺失值无法通过插值处理")
         
     @timeit
+    def create_panel_dataset(self, index_columns: list[str], index_values: dict[str, list]) -> None:
+        """
+        创建面板数据集，确保包含所有可能的组合
+
+        参数:
+            index_columns (list[str]): 索引列名列表，如 ['地级市', '年份']
+            index_values (dict[str, list]): 每个索引列的所有可能值，如 {'地级市': cities, '年份': years}
+        """
+        # 保存原始数据（包含改革信息）
+        reform_data = self.data.copy()
+        
+        # 创建所有组合的面板数据，使用传入的列名
+        # 获取每个索引列的值
+        city_col = index_columns[0]
+        year_col = index_columns[1]
+        cities = index_values[city_col]
+        years = sorted(index_values[year_col])  # 确保年份排序
+        
+        # 生成笛卡尔积
+        panel_data = []
+        for city in cities:
+            for year in years:
+                panel_data.append({city_col: city, year_col: year})
+        
+        # 转换为DataFrame并按列排序
+        panel_df = pd.DataFrame(panel_data)
+        panel_df = panel_df.sort_values(by=index_columns)
+        
+        # 合并时确保数据类型一致，例如年份转换为相同类型
+        # 假设原始数据中的年份是整数，panel_df中的年份也应为整数
+        panel_df[year_col] = panel_df[year_col].astype(int)
+        reform_data[year_col] = reform_data[year_col].astype(int)
+        
+        # 合并面板数据和原始数据，左连接以保留所有组合
+        self.data = pd.merge(panel_df, reform_data, on=index_columns, how='left')
+        
+    @timeit
+    def create_did_variable(self, time_col: str, unit_col: str) -> None:
+        """
+        创建DID处理变量，确保列名正确引用
+        """
+        # 获取改革时间（非空的最小年份）
+        reform_years = self.data.dropna(subset=['改革时间']).groupby(unit_col)['改革时间'].min().to_dict()
+        
+        # 创建DID变量
+        self.data['did'] = 0  # 初始化为0
+        # 根据改革时间更新did
+        for city, reform_year in reform_years.items():
+            mask = (self.data[unit_col] == city) & (self.data[time_col] >= reform_year)
+            self.data.loc[mask, 'did'] = 1
+        
+        # 排序数据
+        self.data = self.data.sort_values([unit_col, time_col])
+        
+    @timeit
     def close_file_and_save(self):
         """
         将数据写回Excel文件并关闭
