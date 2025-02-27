@@ -340,9 +340,124 @@ def process_data(file_name):
     # process_fixed_asset_investment_data(file_name, Constant.cities, Constant.years)
     process_county_to_district_data(file_name, Constant.cities, Constant.years)
 
+import pandas as pd
+from const import Constant
+from lib.csv_writer import CSVWriter
+
+# 土地出让数据
+def process_land_sale_data():
+    input_file = "projects/data/土地出让true.csv"
+    output_file = "projects/data/output_土地出让true.csv"
+    
+    # Read input CSV file
+    df = pd.read_csv(input_file, low_memory=False)
+    
+    # 首先打印列名和唯一值，方便调试
+    print("CSV文件的列名:", df.columns.tolist())
+    print("\n供地方式的唯一值:")
+    print(df['供地方式'].unique())
+    print("\n土地用途的唯一值:")
+    print(df['土地用途'].unique())
+    print("\n土地来源的唯一值:")
+    print(df['土地来源'].unique())
+    
+    # 处理城市名称，删除末尾的市字
+    df['市'] = df['市'].str.replace('市$', '', regex=True)
+    
+    # 过滤数据，只保留有效的城市和年份
+    df = df[df['市'].isin(Constant.cities) & df['年份'].isin(Constant.years)]
+    
+    # 只保留以"区"结尾的县域数据，过滤掉以"县"或"市"结尾的
+    df = df.dropna(subset=['县'])  # 删除县列中的NaN值
+    df = df[df['县'].str.endswith('区')]
+    
+    # 保留需要的列
+    keep_columns = ['年份', '省', '省代码', '市', '市代码', '县', '县代码', 
+                   '供地总面积_公顷', '供地方式', '土地用途', '成交价格_万元', '土地来源']
+    df = df[keep_columns]
+    
+    # 将数值列转换为数值类型
+    df['年份'] = pd.to_numeric(df['年份'], errors='coerce')
+    df['供地总面积_公顷'] = pd.to_numeric(df['供地总面积_公顷'], errors='coerce')
+    df['成交价格_万元'] = pd.to_numeric(df['成交价格_万元'], errors='coerce')
+    
+    # 1. 处理供地方式
+    supply_type_pivot = pd.pivot_table(
+        df,
+        values='供地总面积_公顷',
+        index=['市', '年份', '县'],
+        columns=['供地方式'],
+        aggfunc='sum',
+        fill_value=0
+    )
+    supply_type_pivot = supply_type_pivot.add_prefix('供地方式_')
+    
+    # 2. 处理土地用途
+    land_use_pivot = pd.pivot_table(
+        df,
+        values='供地总面积_公顷',
+        index=['市', '年份', '县'],
+        columns=['土地用途'],
+        aggfunc='sum',
+        fill_value=0
+    )
+    land_use_pivot = land_use_pivot.add_prefix('土地用途_')
+    
+    # 3. 处理土地来源
+    land_source_pivot = pd.pivot_table(
+        df,
+        values='供地总面积_公顷',
+        index=['市', '年份', '县'],
+        columns=['土地来源'],
+        aggfunc='sum',
+        fill_value=0
+    )
+    land_source_pivot = land_source_pivot.add_prefix('土地来源_')
+    
+    # 将所有NaN值替换为0
+    supply_type_pivot = supply_type_pivot.fillna(0)
+    land_use_pivot = land_use_pivot.fillna(0)
+    land_source_pivot = land_source_pivot.fillna(0)
+    
+    # 4. 计算总面积和加权平均价格
+    # 使用更简单的方法计算加权平均价格
+    # 首先计算每个分组的总面积和总价格
+    agg_df = df.groupby(['市', '年份', '县']).agg({
+        '供地总面积_公顷': 'sum',
+        '成交价格_万元': 'sum'
+    })
+    
+    # 添加一个新列计算平均价格
+    agg_df['平均价格_万元每公顷'] = (agg_df['成交价格_万元'] / agg_df['供地总面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    
+    # 将NaN替换为0
+    agg_df = agg_df.fillna(0)
+    
+    # 合并所有数据
+    result = pd.concat([agg_df, supply_type_pivot, land_use_pivot, land_source_pivot], axis=1)
+    result = result.reset_index()
+    
+    # 使用 Constant.cities 的顺序进行排序
+    result['市'] = pd.Categorical(result['市'], categories=Constant.cities, ordered=True)
+    result = result.sort_values(by=['市', '年份', '县'])
+    
+    # Write to output file using CSVWriter
+    writer = CSVWriter(output_file)
+    writer.set_columns(result.columns.tolist())
+    
+    for _, row in result.iterrows():
+        writer.add_row(row.to_dict())
+    
+    writer.write()
+    
+    # 打印最终的列名，方便检查
+    print("\n最终数据的列名:")
+    print(result.columns.tolist())
+
 def main(input_file, output_file):
     Tools.copy_file(input_file, output_file)
-    process_data(output_file)
+    # process_data(output_file)
+    process_land_sale_data()
 
 if __name__ == "__main__":
     input_file = "projects/data/data_copy.xlsx"

@@ -1,5 +1,8 @@
 # file
 土地数据.csv
+土地出让false.csv
+土地出让true.csv
+output_土地出让false.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
