@@ -185,48 +185,72 @@ class DataCleaner:
         # 保存原始数据（包含改革信息）
         reform_data = self.data.copy()
         
-        # 创建所有组合的面板数据，使用传入的列名
-        # 获取每个索引列的值
-        city_col = index_columns[0]
-        year_col = index_columns[1]
+        # 获取列名
+        city_col = index_columns[0]  # '地级市'
+        year_col = index_columns[1]  # '年份'
+        
+        # 获取城市和年份列表
         cities = index_values[city_col]
         years = sorted(index_values[year_col])  # 确保年份排序
         
-        # 生成笛卡尔积
+        # 生成完整的面板数据（所有城市和年份的组合）
         panel_data = []
         for city in cities:
             for year in years:
                 panel_data.append({city_col: city, year_col: year})
         
-        # 转换为DataFrame并按列排序
+        # 转换为DataFrame
         panel_df = pd.DataFrame(panel_data)
-        panel_df = panel_df.sort_values(by=index_columns)
         
-        # 合并时确保数据类型一致，例如年份转换为相同类型
-        # 假设原始数据中的年份是整数，panel_df中的年份也应为整数
+        # 确保年份列为整数类型
         panel_df[year_col] = panel_df[year_col].astype(int)
-        reform_data[year_col] = reform_data[year_col].astype(int)
+        if year_col in reform_data.columns:
+            reform_data[year_col] = pd.to_numeric(reform_data[year_col], errors='coerce').astype('Int64')
         
-        # 合并面板数据和原始数据，左连接以保留所有组合
+        # 合并面板数据和原始数据
+        # 使用left join确保保留所有城市-年份组合，即使在原始数据中不存在
         self.data = pd.merge(panel_df, reform_data, on=index_columns, how='left')
+        
+
+        # 将缺失值填充为0或适当的默认值
+        # 对于撤县设区数据，缺失值表示该年份未进行改革，应填充为0
+        numeric_columns = self.data.select_dtypes(include=['int64', 'float64']).columns
+        self.data[numeric_columns] = self.data[numeric_columns].fillna(0)
         
     @timeit
     def create_did_variable(self, time_col: str, unit_col: str) -> None:
         """
-        创建DID处理变量，确保列名正确引用
+        创建DID变量
+        如果城市发生了撤县设区，那么从改革年份开始设置did=1，其他情况为0
+        
+        参数:
+            time_col: 时间列名（年份）
+            unit_col: 单位列名（地级市）
         """
-        # 获取改革时间（非空的最小年份）
-        reform_years = self.data.dropna(subset=['改革时间']).groupby(unit_col)['改革时间'].min().to_dict()
+        # 初始化did变量为0
+        self.data['did'] = 0
         
-        # 创建DID变量
-        self.data['did'] = 0  # 初始化为0
-        # 根据改革时间更新did
-        for city, reform_year in reform_years.items():
-            mask = (self.data[unit_col] == city) & (self.data[time_col] >= reform_year)
-            self.data.loc[mask, 'did'] = 1
+        # 获取每个城市的改革时间
+        reform_data = self.data[self.data['省份'].notna()].copy()
         
-        # 排序数据
-        self.data = self.data.sort_values([unit_col, time_col])
+        if not reform_data.empty:
+            # 按城市分组，找出每个城市的改革年份
+            reform_years = reform_data.groupby(unit_col)[time_col].min()
+            
+            # 对每个发生改革的城市
+            for city, reform_year in reform_years.items():
+                # 将改革年份及之后的所有年份的did设置为1
+                mask = (
+                    (self.data[unit_col] == city) & 
+                    (self.data[time_col] >= reform_year)  # 改为>=，包含改革年份
+                )
+                self.data.loc[mask, 'did'] = 1
+        
+        # 使用const.py中的城市顺序进行排序
+        from const import Constant
+        city_order = pd.CategoricalDtype(categories=Constant.cities, ordered=True)
+        self.data[unit_col] = self.data[unit_col].astype(city_order)
+        self.data = self.data.sort_values(by=[unit_col, time_col])
         
     @timeit
     def close_file_and_save(self):

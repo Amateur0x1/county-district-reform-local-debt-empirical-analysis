@@ -277,7 +277,20 @@ def process_fixed_asset_investment_data(file_name, cities, years):
 
 # 处理撤县设区数据
 def process_county_to_district_data(file_name, cities, years):
-    # clean data in sheet '撤县设区'
+    # 首先创建完整的面板数据框架
+    panel_data = []
+    # 使用cities列表的原始顺序
+    for city in cities:
+        for year in sorted(years):  # 确保年份排序
+            panel_data.append({
+                '地级市': city,  # 直接使用const.py中的城市名
+                '年份': year
+            })
+    
+    # 转换为DataFrame，不需要额外排序，因为我们已经按照所需的顺序创建了数据
+    panel_df = pd.DataFrame(panel_data)
+    
+    # 读取和清理撤县设区数据
     county_to_district_cleaner = DataCleaner(
         file_path=file_name,
         sheet_name='撤县设区数据',
@@ -288,19 +301,27 @@ def process_county_to_district_data(file_name, cities, years):
     county_to_district_cleaner.clean_data_keep_values('地级市', cities)
     county_to_district_cleaner.clean_data_keep_values('年份', years)
     
-    # 创建面板数据并添加DID变量
-    county_to_district_cleaner.create_panel_dataset(
-        index_columns=['city', 'year'],
-        index_values={'city': cities, 'year': years}
-    )
+    # 将清理后的数据与面板数据合并
+    reform_data = county_to_district_cleaner.data
     
-    # 使用中文列名创建DID变量（因为我们的数据是用中文列名）
-    county_to_district_cleaner.create_did_variable(
-        time_col='年份',
-        unit_col='地级市'
-    )
+    # 确保年份列为整数类型
+    panel_df['年份'] = panel_df['年份'].astype(int)
+    reform_data['年份'] = pd.to_numeric(reform_data['年份'], errors='coerce').astype('Int64')
     
-    # 保存处理后的数据
+    # 合并数据
+    merged_data = pd.merge(panel_df, reform_data, on=['地级市', '年份'], how='left')
+    
+    # 将缺失值填充为0
+    numeric_columns = merged_data.select_dtypes(include=['int64', 'float64']).columns
+    merged_data[numeric_columns] = merged_data[numeric_columns].fillna(0)
+    
+    # 更新清理器中的数据
+    county_to_district_cleaner.data = merged_data
+    
+    # 创建DID变量
+    county_to_district_cleaner.create_did_variable('年份', '地级市')
+    
+    # 保存数据
     county_to_district_cleaner.close_file_and_save()
 
 def process_data(file_name):
