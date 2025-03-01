@@ -14,39 +14,49 @@ class LongFormatParams:
 
 class DataCleaner:
     """
-    数据清洗类，用于删除Excel文件中不在指定城市和年份范围内的数据
+    数据清洗类，用于处理数据中的缺失值和异常值
     
     参数:
-        file_path (str): Excel文件路径
-        sheet_name (str): 需要处理的sheet名称
+        data: 可以是Excel文件路径或pandas DataFrame
+        sheet_name: 如果data是文件路径，则需要指定sheet名称
     """
-    def __init__(self, file_path: str, sheet_name: str, is_long_format: bool = True, long_format_params: Optional[LongFormatParams] = None):
+    def __init__(self, data, sheet_name: str = None, is_long_format: bool = True, long_format_params: Optional[LongFormatParams] = None):
         """
         初始化数据清洗类
         参数:
-            file_path (str): Excel文件路径
-            sheet_name (str): 需要处理的sheet名称
-            is_long_format (bool): 是否需要转换为长格式，默认为True
-            long_format_params (dict): 转换为长格式所需的参数字典，包含以下键值:
-                - id_vars (list): 需要保留的标识列，如 ['province', 'city']
-                - value_vars (list): 需要转换的数值列，如年份列表 [2018, 2019, 2020]
-                - var_name (str): 转换后的变量名列名称，如 'year'
-                - value_name (str): 转换后的数值列名称，如 'target'
+            data: pandas DataFrame或Excel文件路径
+            sheet_name: 如果data是文件路径，则需要指定sheet名称
+            is_long_format: 是否需要转换为长格式，默认为True
+            long_format_params: 转换为长格式所需的参数
         """
-        self.file_path = file_path
-        self.sheet_name = sheet_name
+        if isinstance(data, str):
+            self.file_path = data
+            self.sheet_name = sheet_name
+            
+            if sheet_name is None:
+                raise ValueError("sheet_name must be provided when data is a file path")
 
-        # 读取Excel文件
-        excel_file = pd.ExcelFile(self.file_path)
-        
-        # 检查sheet是否存在
-        if self.sheet_name not in excel_file.sheet_names:
-            raise ValueError(f"Sheet '{self.sheet_name}' not found in file")
+            # 读取Excel文件
+            excel_file = pd.ExcelFile(self.file_path)
+            
+            # 检查sheet是否存在
+            if self.sheet_name not in excel_file.sheet_names:
+                raise ValueError(f"Sheet '{self.sheet_name}' not found in file")
 
-        # 读取数据
-        self.data = pd.read_excel(self.file_path, sheet_name=self.sheet_name)
-        if not is_long_format:
-            self.data = Tools.panel_to_long(self.data, long_format_params.id_vars, long_format_params.value_vars, long_format_params.var_name, long_format_params.value_name)
+            # 读取数据
+            self.data = pd.read_excel(self.file_path, sheet_name=self.sheet_name)
+            if not is_long_format and long_format_params:
+                self.data = Tools.panel_to_long(
+                    self.data, 
+                    long_format_params.id_vars, 
+                    long_format_params.value_vars, 
+                    long_format_params.var_name, 
+                    long_format_params.value_name
+                )
+        elif isinstance(data, pd.DataFrame):
+            self.data = data.copy()
+        else:
+            raise ValueError("data must be either a pandas DataFrame or a file path")
 
     @timeit
     def replace_column_name(self, column_names: list[str], new_column_name: str):
@@ -252,6 +262,30 @@ class DataCleaner:
         self.data[unit_col] = self.data[unit_col].astype(city_order)
         self.data = self.data.sort_values(by=[unit_col, time_col])
         
+    @timeit
+    def replace_values_less_than_one(self, columns: List[str]) -> None:
+        """
+        将指定列中小于1的值替换为1
+        
+        参数:
+            columns (List[str]): 需要处理的列名列表
+        """
+        for column in columns:
+            if column not in self.data.columns:
+                print(f"警告: 列 '{column}' 不存在于数据中")
+                continue
+                
+            # 检查列是否为数值类型
+            if not np.issubdtype(self.data[column].dtype, np.number):
+                print(f"警告: 列 '{column}' 不是数值类型，跳过处理")
+                continue
+                
+            # 将小于1的值替换为1
+            mask = (self.data[column] < 1)  # 保留0值不变
+            if mask.any():
+                print(f"列 '{column}' 中有 {mask.sum()} 个小于1的值被替换为1")
+                self.data.loc[mask, column] = 1
+                
     @timeit
     def close_file_and_save(self):
         """
