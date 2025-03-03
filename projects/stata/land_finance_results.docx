@@ -1,0 +1,20 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx7056\clbrdrt\brdrs\cellx11808\clbrdrt\brdrs\cellx16704\clbrdrt\brdrs\cellx20880
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7056\cellx11808\cellx16704\cellx20880
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7056\clbrdrb\brdrs\cellx11808\clbrdrb\brdrs\cellx16704\clbrdrb\brdrs\cellx20880
+\ql VARIABLES\cell\qc Land Finance: Land Transfer Revenue\cell\qc Land Finance: Land Transfer Area\cell\qc Land Finance: Land Transfer Price\cell\qc Land Finance: Financing Cost\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7056\cellx11808\cellx16704\cellx20880
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc 16.57\cell\qc -0.0830\cell\qc 2,780\cell\qc -0.251*\cell\row
+\ql \cell\qc (11.89)\cell\qc (0.0585)\cell\qc (2,484)\cell\qc (0.130)\cell\row
+\ql Constant\cell\qc 149.4\cell\qc -3.013**\cell\qc -226,888***\cell\qc 5.414*\cell\row
+\ql \cell\qc (262.2)\cell\qc (1.290)\cell\qc (54,770)\cell\qc (2.865)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7056\clbrdrb\brdrs\cellx11808\clbrdrb\brdrs\cellx16704\clbrdrb\brdrs\cellx20880
+\ql R-squared\cell\qc 0.442\cell\qc 0.687\cell\qc 0.079\cell\qc 0.434\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

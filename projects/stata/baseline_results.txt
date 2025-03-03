@@ -1,0 +1,67 @@
+	(1)	(2)	(3)	(4)	(5)	(6)
+VARIABLES	多期DID：平行趋势检验	Robustness: PSM-DID	Robustness: Placebo Test	Robustness: Excluding Sub-Provincial Cities	Robustness: Excluding Autonomous Regions	Robustness: Excluding Interfering Policies
+						
+pre_13	140.0					
+	(120.5)					
+pre_12	109.1					
+	(102.1)					
+pre_11	147.1					
+	(93.98)					
+pre_10	119.8					
+	(86.87)					
+pre_9	30.94					
+	(97.14)					
+pre_8	-12.52					
+	(86.34)					
+pre_7	-48.82					
+	(87.38)					
+pre_6	-57.98					
+	(66.34)					
+pre_5	-57.16					
+	(53.36)					
+pre_4	-29.71					
+	(41.83)					
+pre_3	-40.20					
+	(25.44)					
+pre_2	-27.49*					
+	(15.46)					
+current	23.44*					
+	(14.03)					
+las_1	64.23**					
+	(30.45)					
+las_2	101.2**					
+	(49.03)					
+las_3	192.2***					
+	(69.89)					
+las_4	266.6***					
+	(91.04)					
+las_5	394.3***					
+	(142.8)					
+las_6	432.3**					
+	(174.3)					
+las_7	613.0**					
+	(251.3)					
+las_8	729.5***					
+	(272.5)					
+las_9	746.1**					
+	(302.0)					
+las_10	566.6**					
+	(242.1)					
+las_11	800.1***					
+	(301.0)					
+las_12	1,259***					
+	(157.9)					
+las_13	1,351***					
+	(176.6)					
+did		174.3***		77.31***	223.7***	243.5***
+		(55.58)		(19.22)	(37.46)	(39.58)
+pseudo_did			-17.31			
+			(19.40)			
+Constant	595.9***	508.3***	835.0	-2,590***	1,130	428.3
+	(164.9)	(24.44)	(792.0)	(412.3)	(838.4)	(876.7)
+						
+Observations	3,120	1,974	3,120	2,745	2,880	2,790
+R-squared	0.311	0.720	0.677	0.699	0.684	0.681
+Number of city_id	208					
+Robust standard errors in parentheses						
+*** p<0.01, ** p<0.05, * p<0.1						

@@ -1,0 +1,20 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx5904\clbrdrt\brdrs\cellx9936\clbrdrt\brdrs\cellx15552
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx5904\cellx9936\cellx15552
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5904\clbrdrb\brdrs\cellx9936\clbrdrb\brdrs\cellx15552
+\ql VARIABLES\cell\qc Fiscal Revenue: Tax Revenue\cell\qc Fiscal Revenue: VAT Revenue\cell\qc Fiscal Revenue: Economic Agglomeration\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx5904\cellx9936\cellx15552
+\ql \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc -0.111\cell\qc 0.0182\cell\qc -19.77***\cell\row
+\ql \cell\qc (0.155)\cell\qc (0.0290)\cell\qc (7.334)\cell\row
+\ql Constant\cell\qc -5.444\cell\qc 4.022***\cell\qc -122.5\cell\row
+\ql \cell\qc (3.421)\cell\qc (0.639)\cell\qc (161.7)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5904\clbrdrb\brdrs\cellx9936\clbrdrb\brdrs\cellx15552
+\ql R-squared\cell\qc 0.615\cell\qc 0.800\cell\qc 0.141\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

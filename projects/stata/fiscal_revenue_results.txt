@@ -1,0 +1,12 @@
+	(1)	(2)	(3)
+VARIABLES	Fiscal Revenue: Tax Revenue	Fiscal Revenue: VAT Revenue	Fiscal Revenue: Economic Agglomeration
+			
+did	-0.111	0.0182	-19.77***
+	(0.155)	(0.0290)	(7.334)
+Constant	-5.444	4.022***	-122.5
+	(3.421)	(0.639)	(161.7)
+			
+Observations	3,120	3,120	3,120
+R-squared	0.615	0.800	0.141
+Standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			

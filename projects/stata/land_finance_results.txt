@@ -1,0 +1,12 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	Land Finance: Land Transfer Revenue	Land Finance: Land Transfer Area	Land Finance: Land Transfer Price	Land Finance: Financing Cost
+				
+did	16.57	-0.0830	2,780	-0.251*
+	(11.89)	(0.0585)	(2,484)	(0.130)
+Constant	149.4	-3.013**	-226,888***	5.414*
+	(262.2)	(1.290)	(54,770)	(2.865)
+				
+Observations	3,120	3,120	3,120	3,120
+R-squared	0.442	0.687	0.079	0.434
+Standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

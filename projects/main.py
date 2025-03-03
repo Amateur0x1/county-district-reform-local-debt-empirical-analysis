@@ -147,19 +147,18 @@ def process_commercial_bank_data(file_name, cities, years):
     # write data to sheet '商业银行'
     commercial_bank_cleaner.close_file_and_save()
 
-# 处理灯光数据
-# deprecated
-def process_light_data(file_name, cities, years):
+# 处理灯光平均数据
+def process_light_average_data(file_name, cities, years):
     # clean data in sheet '灯光数据'
     light_cleaner = DataCleaner(
         file_name,
-        sheet_name='灯光数据',
+        sheet_name='灯光平均数据',
         is_long_format=False,
         long_format_params=LongFormatParams(
             id_vars=['CITY', 'PR','PR_ID', 'PR_TYPE', 'CITY_ID', 'CITY_TYPE'],
             value_vars=years,
             var_name='year',
-            value_name='light'
+            value_name='light_average'
         )
     )
 
@@ -174,6 +173,35 @@ def process_light_data(file_name, cities, years):
 
     # write data to sheet '灯光数据'
     light_cleaner.close_file_and_save()
+
+
+# 处理灯光总和数据
+def process_light_sum_data(file_name, cities, years):
+    # clean data in sheet '灯光数据'
+    light_cleaner = DataCleaner(
+        file_name,
+        sheet_name='灯光总和数据',
+        is_long_format=False,
+        long_format_params=LongFormatParams(
+            id_vars=['CITY', 'PR','PR_ID', 'PR_TYPE', 'CITY_ID', 'CITY_TYPE'],
+            value_vars=years,
+            var_name='year',
+            value_name='light_sum'
+        )
+    )
+
+    light_cleaner.clean_column_data('CITY', '市')
+    light_cleaner.clean_data_keep_values('CITY', cities)
+    light_cleaner.clean_data_keep_values('year', years)
+
+    light_cleaner.rearrange_data(
+        sort_priority=['CITY', 'year'],
+        sort_orders={'CITY': cities, 'year': years}
+    )
+
+    # write data to sheet '灯光数据'
+    light_cleaner.close_file_and_save()
+
 
 # 处理控制变量
 # deprecated
@@ -432,14 +460,15 @@ def process_data(file_name):
     # process_land_sale_income_data(file_name, Constant.cities, Constant.years)
     # process_mayor_data(file_name, Constant.cities, Constant.years)
     # process_commercial_bank_data(file_name, Constant.cities, Constant.years)
-    # process_light_data(file_name, Constant.cities, Constant.years)
+    process_light_average_data(file_name, Constant.cities, Constant.years)
+    process_light_sum_data(file_name, Constant.cities, Constant.years)
     # process_control_variable_data(file_name, Constant.cities, Constant.years)
     # process_finance_expenditure_and_income_data(file_name, Constant.cities, Constant.years)
     # process_administrative_power_data(file_name, Constant.cities, Constant.years)
     # process_finance_self_sufficiency_data(file_name, Constant.cities, Constant.years)
     # process_fixed_asset_investment_data(file_name, Constant.cities, Constant.years)
     # process_county_to_district_data(file_name, Constant.cities, Constant.years)
-    process_city_expenditure_data(file_name, Constant.cities, Constant.years)
+    # process_city_expenditure_data(file_name, Constant.cities, Constant.years)
     # process_finance_cost_data(file_name, Constant.cities, Constant.years)
 
 # 土地出让数据
@@ -587,10 +616,148 @@ def process_land_sale_data():
     print("\n最终数据的列名:")
     print(result.columns.tolist())
 
+# 处理回归数据
+def process_regression_data():
+    input_file = "projects/data/会总数据.xlsx"
+    output_file = "projects/data/会总数据clean.xlsx"
+    Tools.copy_file(input_file, output_file)
+
+    regression_cleaner = DataCleaner(
+        output_file,
+        sheet_name='回归数据',
+    )
+
+    autonomous_region_cities = [
+    # 广西壮族自治区
+    "南宁", "柳州", "桂林", "梧州", "北海", "防城港", "钦州", "贵港", "玉林", "百色", "贺州", "河池", "来宾", "崇左",
+    
+    # 内蒙古自治区
+    "呼和浩特", "包头", "乌海", "赤峰", "通辽", "鄂尔多斯", "呼伦贝尔", "巴彦淖尔", "乌兰察布", "兴安盟", "锡林郭勒盟", "阿拉善盟",
+    
+    # 宁夏回族自治区
+    "银川", "石嘴山", "吴忠", "固原", "中卫",
+    
+    # 新疆维吾尔自治区
+    "乌鲁木齐", "克拉玛依", "吐鲁番", "哈密", "昌吉", "博尔塔拉", "巴音郭楞", "阿克苏", "克孜勒苏", "喀什", "和田", "伊犁", "塔城", "阿勒泰",
+    
+    # 西藏自治区
+    "拉萨", "日喀则", "昌都", "林芝", "山南", "那曲", "阿里"
+    ]
+
+    # 副省级城市和省会城市列表（按地理大区排序）
+    sub_provincial_cities = [
+        # 华北地区
+        "北京", "天津", "石家庄", "太原",
+        
+        # 东北地区
+        "沈阳", "大连", "长春", "哈尔滨",
+        
+        # 华东地区
+        "上海", "南京", "杭州", "合肥", "福州", "南昌", "济南", "青岛", "宁波", "厦门",
+        
+        # 华中地区
+        "郑州", "武汉", "长沙",
+        
+        # 华南地区
+        "广州", "深圳", "海口",
+        
+        # 西南地区
+        "重庆", "成都", "贵阳", "昆明",
+        
+        # 西北地区
+        "西安", "兰州", "西宁"
+    ]
+
+    # 部分撤县设市城市列表（按地区排序）
+    di_jishi_list = [
+        "九江", "合肥", "铜仁",
+        "海东", "昌都", "日喀则", "咸阳", "南通", "荆门", "朔州", "唐山",
+        "安庆", "滨州", "昭通", "平凉", "黑河", "宣城", "芜湖", "邵阳",
+        "遂宁", "延安", "新乡", "温州", "玉溪", "赣州", "荆州", "安康",
+        "永州"
+    ]
+
+    def get_city_type(city_name):
+        """
+        获取城市类型标识
+        Args:
+            city_name: 城市名称，可以带"市"也可以不带
+        Returns:
+            dict: 包含三个标识的字典
+        """
+        # 去除"市"后缀进行匹配
+        city = city_name.replace("市", "")
+        
+        # 初始化结果
+        result = {
+            "autonomous_region": 0,  # 自治区城市
+            "sub_provincial": 0,     # 副省级和省会城市
+            "county_to_city": 0      # 地级市（撤县设市）
+        }
+        
+        # 检查是否为自治区城市
+        if city in autonomous_region_cities:
+            result["autonomous_region"] = 1
+            
+        # 检查是否为副省级或省会城市
+        if city in sub_provincial_cities:
+            result["sub_provincial"] = 1
+            
+        # 检查是否为撤县设市
+        if city_name in di_jishi_list:
+            result["county_to_city"] = 1
+            
+        return result
+
+    # 获取当前数据中的所有城市
+    cities = regression_cleaner.data['city'].unique()
+    
+    # 创建一个字典存储每个城市的首次撤并年份和 action 标识
+    event_years = {}
+    
+    # 对每个城市，找出 did 首次为 1 的年份
+    for city in cities:
+        city_data = regression_cleaner.data[regression_cleaner.data['city'] == city]
+        # 找出 did 为 1 的年份，如果存在则取最小年份
+        did_years = city_data[city_data['did'] == 1]['year']
+        if not did_years.empty:
+            event_years[city] = did_years.min()
+        else:
+            event_years[city] = 0  # 如果没有撤并事件，设为 0
+         
+    
+    # 将事件年份添加到数据中
+    regression_cleaner.data['event_year'] = regression_cleaner.data['city'].map(event_years)
+    
+    # 处理每个城市的类型标识
+    city_types_list = []
+    for city in cities:
+        city_type = get_city_type(city)
+        city_types_list.append({
+            'city': city,
+            'autonomous_region': city_type['autonomous_region'],
+            'sub_provincial': city_type['sub_provincial'],
+            'county_to_city': city_type['county_to_city']
+        })
+    
+    # 将城市类型数据转换为DataFrame
+    city_types_df = pd.DataFrame(city_types_list)
+    
+    # 将城市类型数据与原始数据合并
+    regression_cleaner.data = regression_cleaner.data.merge(
+        city_types_df,
+        on='city',
+        how='left'
+    )
+    
+    # 保存处理后的数据
+    regression_cleaner.close_file_and_save()
+
 def main(input_file, output_file):
     Tools.copy_file(input_file, output_file)
     process_data(output_file)
     # process_land_sale_data()
+    # process_regression_data()
 
 if __name__ == "__main__":
     input_file = "projects/data/data_copy.xlsx"

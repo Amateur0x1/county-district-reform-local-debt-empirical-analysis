@@ -1,0 +1,18 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	Heterogeneity: Multiple Mergers	Heterogeneity: Fiscal Pressure	Heterogeneity: Pre-New Budget Law (Before 2014)	Heterogeneity: Post-New Budget Law (2014 and Later)
+				
+fp		-40.87***		
+		(14.91)		
+1.did#c.fp		-173.9***		
+		(19.73)		
+mar	491.9***			
+	(69.11)			
+did			101.2***	24.23
+			(23.83)	(56.03)
+Constant	459.0	-525.3	487.6	4,795***
+	(786.1)	(794.1)	(403.3)	(1,313)
+				
+Observations	3,120	3,120	1,248	1,872
+R-squared	0.683	0.692	0.864	0.827
+Standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				
