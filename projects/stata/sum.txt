@@ -1,0 +1,24 @@
+	(1)
+VARIABLES	sum
+	
+did	-191.6***
+	(51.16)
+pd	-0.0163
+	(0.0112)
+led	248.1**
+	(102.5)
+fdi	-433.9**
+	(218.9)
+lfd	49.12
+	(40.55)
+oei	157.4
+	(126.8)
+isu	-95.39***
+	(36.33)
+Constant	-2,094*
+	(1,128)
+	
+Observations	3,120
+R-squared	0.392
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

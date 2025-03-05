@@ -1,25 +1,30 @@
 {\rtf1\fs24
-\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx6480\clbrdrt\brdrs\cellx10944\clbrdrt\brdrs\cellx17856\clbrdrt\brdrs\cellx25344
-\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
-\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx6480\cellx10944\cellx17856\cellx25344
-\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx6480\clbrdrb\brdrs\cellx10944\clbrdrb\brdrs\cellx17856\clbrdrb\brdrs\cellx25344
-\ql VARIABLES\cell\qc Heterogeneity: Multiple Mergers\cell\qc Heterogeneity: Fiscal Pressure\cell\qc Heterogeneity: Pre-New Budget Law (Before 2014)\cell\qc Heterogeneity: Post-New Budget Law (2014 and Later)\cell\row
-\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx6480\cellx10944\cellx17856\cellx25344
-\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
-\ql fp\cell\qc \cell\qc -40.87***\cell\qc \cell\qc \cell\row
-\ql \cell\qc \cell\qc (14.91)\cell\qc \cell\qc \cell\row
-\ql 1.did#c.fp\cell\qc \cell\qc -173.9***\cell\qc \cell\qc \cell\row
-\ql \cell\qc \cell\qc (19.73)\cell\qc \cell\qc \cell\row
-\ql mar\cell\qc 491.9***\cell\qc \cell\qc \cell\qc \cell\row
-\ql \cell\qc (69.11)\cell\qc \cell\qc \cell\qc \cell\row
-\ql did\cell\qc \cell\qc \cell\qc 101.2***\cell\qc 24.23\cell\row
-\ql \cell\qc \cell\qc \cell\qc (23.83)\cell\qc (56.03)\cell\row
-\ql Constant\cell\qc 459.0\cell\qc -525.3\cell\qc 487.6\cell\qc 4,795***\cell\row
-\ql \cell\qc (786.1)\cell\qc (794.1)\cell\qc (403.3)\cell\qc (1,313)\cell\row
-\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
-\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 1,248\cell\qc 1,872\cell\row
-\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx6480\clbrdrb\brdrs\cellx10944\clbrdrb\brdrs\cellx17856\clbrdrb\brdrs\cellx25344
-\ql R-squared\cell\qc 0.683\cell\qc 0.692\cell\qc 0.864\cell\qc 0.827\cell\row
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx6048\clbrdrt\brdrs\cellx10800\clbrdrt\brdrs\cellx15264\clbrdrt\brdrs\cellx22176\clbrdrt\brdrs\cellx29664
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx6048\cellx10800\cellx15264\cellx22176\cellx29664
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx6048\clbrdrb\brdrs\cellx10800\clbrdrb\brdrs\cellx15264\clbrdrb\brdrs\cellx22176\clbrdrb\brdrs\cellx29664
+\ql VARIABLES\cell\qc Heterogeneity: Once vs Never\cell\qc Heterogeneity: Multiple vs Never\cell\qc Heterogeneity: Fiscal Pressure\cell\qc Heterogeneity: Pre-New Budget Law (Before 2014)\cell\qc Heterogeneity: Post-New Budget Law (2014 and Later)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx6048\cellx10800\cellx15264\cellx22176\cellx29664
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql 1.did\cell\qc \cell\qc \cell\qc 568.1***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (43.90)\cell\qc \cell\qc \cell\row
+\ql fp\cell\qc \cell\qc \cell\qc -33.65***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (10.82)\cell\qc \cell\qc \cell\row
+\ql 1.did#c.fp\cell\qc \cell\qc \cell\qc -149.9***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (14.32)\cell\qc \cell\qc \cell\row
+\ql did_once\cell\qc 165.9***\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (26.64)\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did_multiple\cell\qc \cell\qc 432.9***\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (42.60)\cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc \cell\qc \cell\qc \cell\qc 101.3***\cell\qc 46.84\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc (23.83)\cell\qc (36.09)\cell\row
+\ql Constant\cell\qc -1,493***\cell\qc -292.3\cell\qc -1,675***\cell\qc 487.5\cell\qc 1,077\cell\row
+\ql \cell\qc (558.4)\cell\qc (554.7)\cell\qc (576.4)\cell\qc (403.4)\cell\qc (846.0)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 2,963\cell\qc 2,539\cell\qc 3,120\cell\qc 1,248\cell\qc 1,872\cell\row
+\ql R-squared\cell\qc 0.728\cell\qc 0.787\cell\qc 0.762\cell\qc 0.864\cell\qc 0.890\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx6048\clbrdrb\brdrs\cellx10800\clbrdrb\brdrs\cellx15264\clbrdrb\brdrs\cellx22176\clbrdrb\brdrs\cellx29664
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
 \pard\qc
 Standard errors in parentheses\par
 *** p<0.01, ** p<0.05, * p<0.1\par

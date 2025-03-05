@@ -20,5 +20,6 @@ Constant	-2,094*
 	
 Observations	3,120
 R-squared	0.392
+Controls	N
 Standard errors in parentheses	
 *** p<0.01, ** p<0.05, * p<0.1	

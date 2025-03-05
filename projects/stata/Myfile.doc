@@ -1,0 +1,913 @@
+{\rtf1\ansi\deff0 {\fonttbl{\f0\fnil Garamond;}}
+{\info {\author .}{\company .}{\title .}}
+\deflang1033\plain\fs20
+{\footer\pard\qc\plain\f0\fs20\chpgn\par}
+{
+{
+{\b\qc\line Descriptive Statistics }{\par}
+\trowd\trgaph108\trleft-108\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx2400\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx3200\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx4600\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx6000\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx7400\clbrdrt\brdrw10\brdrs \clbrdrb\brdrw25\brdrs\cellx8800
+\ql { {Variable}}\cell
+\qr { {Obs}}\cell
+\qr { {Mean}}\cell
+\qr { {Std. Dev.}}\cell
+\qr { {Min}}\cell
+\qr { {Max}}\cell
+\row
+\trowd\trgaph108\trleft-108\cellx2400\cellx3200\cellx4600\cellx6000\cellx7400\cellx8800
+\ql { {city id}}\cell
+\qr {{3120}}\cell
+\qr {{381984.61}}\cell
+\qr {{135148.07}}\cell
+\qr {{130100}}\cell
+\qr {{650100}}\cell
+\row
+\ql { {year}}\cell
+\qr {{3120}}\cell
+\qr {{2015}}\cell
+\qr {{4.321}}\cell
+\qr {{2008}}\cell
+\qr {{2022}}\cell
+\row
+\ql { {did}}\cell
+\qr {{3120}}\cell
+\qr {{.236}}\cell
+\qr {{.425}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {mar}}\cell
+\qr {{3120}}\cell
+\qr {{.05}}\cell
+\qr {{.218}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {fp}}\cell
+\qr {{3120}}\cell
+\qr {{2.85}}\cell
+\qr {{1.834}}\cell
+\qr {{.649}}\cell
+\qr {{18.025}}\cell
+\row
+\ql { {gltr}}\cell
+\qr {{3120}}\cell
+\qr {{10.587}}\cell
+\qr {{2.236}}\cell
+\qr {{.693}}\cell
+\qr {{16.917}}\cell
+\row
+\ql { {sltr}}\cell
+\qr {{3120}}\cell
+\qr {{89.14}}\cell
+\qr {{221.581}}\cell
+\qr {{.001}}\cell
+\qr {{4827.875}}\cell
+\row
+\ql { {slta}}\cell
+\qr {{3120}}\cell
+\qr {{518.677}}\cell
+\qr {{762.518}}\cell
+\qr {{-124.684}}\cell
+\qr {{13112.496}}\cell
+\row
+\ql { {sltp}}\cell
+\qr {{3120}}\cell
+\qr {{1342.118}}\cell
+\qr {{36178.375}}\cell
+\qr {{-433.1}}\cell
+\qr {{2020341.6}}\cell
+\row
+\ql { {lta}}\cell
+\qr {{3120}}\cell
+\qr {{4.701}}\cell
+\qr {{1.436}}\cell
+\qr {{1.099}}\cell
+\qr {{8.523}}\cell
+\row
+\ql { {ltp}}\cell
+\qr {{3120}}\cell
+\qr {{1241.821}}\cell
+\qr {{2150.873}}\cell
+\qr {{1}}\cell
+\qr {{33780.4}}\cell
+\row
+\ql { {ltr}}\cell
+\qr {{3120}}\cell
+\qr {{496206.29}}\cell
+\qr {{1564879.2}}\cell
+\qr {{3}}\cell
+\qr {{26509661}}\cell
+\row
+\ql { {clta}}\cell
+\qr {{3120}}\cell
+\qr {{60.4}}\cell
+\qr {{125.337}}\cell
+\qr {{9}}\cell
+\qr {{2714.207}}\cell
+\row
+\ql { {cltp}}\cell
+\qr {{3120}}\cell
+\qr {{1600.35}}\cell
+\qr {{3038.289}}\cell
+\qr {{1}}\cell
+\qr {{61036.353}}\cell
+\row
+\ql { {cltr}}\cell
+\qr {{3120}}\cell
+\qr {{236255.26}}\cell
+\qr {{1103982.8}}\cell
+\qr {{9}}\cell
+\qr {{25855195}}\cell
+\row
+\ql { {ilta}}\cell
+\qr {{3120}}\cell
+\qr {{147.261}}\cell
+\qr {{211.866}}\cell
+\qr {{3}}\cell
+\qr {{2503.57}}\cell
+\row
+\ql { {iltp}}\cell
+\qr {{3120}}\cell
+\qr {{261.298}}\cell
+\qr {{635.615}}\cell
+\qr {{1}}\cell
+\qr {{16231.353}}\cell
+\row
+\ql { {iltr}}\cell
+\qr {{3120}}\cell
+\qr {{45327.53}}\cell
+\qr {{113179.82}}\cell
+\qr {{3}}\cell
+\qr {{3023350.8}}\cell
+\row
+\ql { {fc}}\cell
+\qr {{3120}}\cell
+\qr {{.987}}\cell
+\qr {{2.405}}\cell
+\qr {{-6.337}}\cell
+\qr {{49.901}}\cell
+\row
+\ql { {tr}}\cell
+\qr {{3120}}\cell
+\qr {{5.717}}\cell
+\qr {{3.484}}\cell
+\qr {{1.275}}\cell
+\qr {{66.439}}\cell
+\row
+\ql { {vatr}}\cell
+\qr {{3120}}\cell
+\qr {{1.398}}\cell
+\qr {{.902}}\cell
+\qr {{.124}}\cell
+\qr {{6.162}}\cell
+\row
+\ql { {eal}}\cell
+\qr {{3120}}\cell
+\qr {{21.978}}\cell
+\qr {{110.139}}\cell
+\qr {{2.425}}\cell
+\qr {{4647.6}}\cell
+\row
+\ql { {lri}}\cell
+\qr {{3120}}\cell
+\qr {{.256}}\cell
+\qr {{1.664}}\cell
+\qr {{0}}\cell
+\qr {{62.976}}\cell
+\row
+\ql { {ue}}\cell
+\qr {{3120}}\cell
+\qr {{1.268}}\cell
+\qr {{.468}}\cell
+\qr {{.133}}\cell
+\qr {{8.177}}\cell
+\row
+\ql { {light sum}}\cell
+\qr {{3120}}\cell
+\qr {{78102.163}}\cell
+\qr {{66249.513}}\cell
+\qr {{2791}}\cell
+\qr {{480616}}\cell
+\row
+\ql { {light average}}\cell
+\qr {{3120}}\cell
+\qr {{1.492}}\cell
+\qr {{1.182}}\cell
+\qr {{-2.284}}\cell
+\qr {{4.037}}\cell
+\row
+\ql { {ici}}\cell
+\qr {{3120}}\cell
+\qr {{12.042}}\cell
+\qr {{1.608}}\cell
+\qr {{2.303}}\cell
+\qr {{16.219}}\cell
+\row
+\ql { {imc}}\cell
+\qr {{3120}}\cell
+\qr {{299.37}}\cell
+\qr {{913.339}}\cell
+\qr {{.015}}\cell
+\qr {{33682.756}}\cell
+\row
+\ql { {pd}}\cell
+\qr {{3120}}\cell
+\qr {{3726.664}}\cell
+\qr {{2604.934}}\cell
+\qr {{251}}\cell
+\qr {{15055}}\cell
+\row
+\ql { {led}}\cell
+\qr {{3120}}\cell
+\qr {{10.665}}\cell
+\qr {{.661}}\cell
+\qr {{8.189}}\cell
+\qr {{12.456}}\cell
+\row
+\ql { {lfd}}\cell
+\qr {{3120}}\cell
+\qr {{2.453}}\cell
+\qr {{1.119}}\cell
+\qr {{.703}}\cell
+\qr {{8.778}}\cell
+\row
+\ql { {target}}\cell
+\qr {{3120}}\cell
+\qr {{9.876}}\cell
+\qr {{2.997}}\cell
+\qr {{1}}\cell
+\qr {{25}}\cell
+\row
+\ql { {isu}}\cell
+\qr {{3120}}\cell
+\qr {{.977}}\cell
+\qr {{.502}}\cell
+\qr {{.089}}\cell
+\qr {{5.928}}\cell
+\row
+\ql { {fdi}}\cell
+\qr {{3120}}\cell
+\qr {{.467}}\cell
+\qr {{.228}}\cell
+\qr {{.055}}\cell
+\qr {{1.541}}\cell
+\row
+\ql { {oei}}\cell
+\qr {{3120}}\cell
+\qr {{.188}}\cell
+\qr {{.293}}\cell
+\qr {{-.024}}\cell
+\qr {{3.279}}\cell
+\row
+\ql { {is}}\cell
+\qr {{3120}}\cell
+\qr {{.458}}\cell
+\qr {{.102}}\cell
+\qr {{.087}}\cell
+\qr {{.81}}\cell
+\row
+\ql { {event year}}\cell
+\qr {{3120}}\cell
+\qr {{920.423}}\cell
+\qr {{1004.003}}\cell
+\qr {{0}}\cell
+\qr {{2021}}\cell
+\row
+\ql { {autonomous region}}\cell
+\qr {{3120}}\cell
+\qr {{.077}}\cell
+\qr {{.267}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {sub provincial}}\cell
+\qr {{3120}}\cell
+\qr {{.12}}\cell
+\qr {{.325}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {county to city}}\cell
+\qr {{3120}}\cell
+\qr {{.106}}\cell
+\qr {{.308}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {debt}}\cell
+\qr {{3120}}\cell
+\qr {{396.48}}\cell
+\qr {{728.21}}\cell
+\qr {{.85}}\cell
+\qr {{4425.09}}\cell
+\row
+\ql { { est baseline did}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline pd}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline led}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline fdi}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline lfd}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline oei}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est baseline full}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { {action}}\cell
+\qr {{3120}}\cell
+\qr {{1094.577}}\cell
+\qr {{1004.013}}\cell
+\qr {{-13}}\cell
+\qr {{2022}}\cell
+\row
+\ql { {pre 13}}\cell
+\qr {{3120}}\cell
+\qr {{.001}}\cell
+\qr {{.036}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 12}}\cell
+\qr {{3120}}\cell
+\qr {{.003}}\cell
+\qr {{.051}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 11}}\cell
+\qr {{3120}}\cell
+\qr {{.004}}\cell
+\qr {{.064}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 10}}\cell
+\qr {{3120}}\cell
+\qr {{.005}}\cell
+\qr {{.074}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 9}}\cell
+\qr {{3120}}\cell
+\qr {{.007}}\cell
+\qr {{.084}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 8}}\cell
+\qr {{3120}}\cell
+\qr {{.013}}\cell
+\qr {{.113}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 7}}\cell
+\qr {{3120}}\cell
+\qr {{.018}}\cell
+\qr {{.134}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 6}}\cell
+\qr {{3120}}\cell
+\qr {{.024}}\cell
+\qr {{.152}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 5}}\cell
+\qr {{3120}}\cell
+\qr {{.026}}\cell
+\qr {{.16}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 4}}\cell
+\qr {{3120}}\cell
+\qr {{.028}}\cell
+\qr {{.166}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 3}}\cell
+\qr {{3120}}\cell
+\qr {{.03}}\cell
+\qr {{.171}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 2}}\cell
+\qr {{3120}}\cell
+\qr {{.03}}\cell
+\qr {{.171}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pre 1}}\cell
+\qr {{3120}}\cell
+\qr {{.03}}\cell
+\qr {{.172}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {current}}\cell
+\qr {{3120}}\cell
+\qr {{.03}}\cell
+\qr {{.172}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 1}}\cell
+\qr {{3120}}\cell
+\qr {{.03}}\cell
+\qr {{.172}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 2}}\cell
+\qr {{3120}}\cell
+\qr {{.029}}\cell
+\qr {{.168}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 3}}\cell
+\qr {{3120}}\cell
+\qr {{.028}}\cell
+\qr {{.165}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 4}}\cell
+\qr {{3120}}\cell
+\qr {{.026}}\cell
+\qr {{.16}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 5}}\cell
+\qr {{3120}}\cell
+\qr {{.025}}\cell
+\qr {{.156}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 6}}\cell
+\qr {{3120}}\cell
+\qr {{.023}}\cell
+\qr {{.151}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 7}}\cell
+\qr {{3120}}\cell
+\qr {{.018}}\cell
+\qr {{.132}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 8}}\cell
+\qr {{3120}}\cell
+\qr {{.012}}\cell
+\qr {{.11}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 9}}\cell
+\qr {{3120}}\cell
+\qr {{.007}}\cell
+\qr {{.082}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 10}}\cell
+\qr {{3120}}\cell
+\qr {{.004}}\cell
+\qr {{.064}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 11}}\cell
+\qr {{3120}}\cell
+\qr {{.002}}\cell
+\qr {{.047}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 12}}\cell
+\qr {{3120}}\cell
+\qr {{0}}\cell
+\qr {{.018}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {las 13}}\cell
+\qr {{3120}}\cell
+\qr {{0}}\cell
+\qr {{.018}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est parallel trend}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { pscore}}\cell
+\qr {{3120}}\cell
+\qr {{.236}}\cell
+\qr {{.164}}\cell
+\qr {{.002}}\cell
+\qr {{.76}}\cell
+\row
+\ql { { treated}}\cell
+\qr {{3120}}\cell
+\qr {{.236}}\cell
+\qr {{.425}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { support}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { weight}}\cell
+\qr {{1974}}\cell
+\qr {{1.581}}\cell
+\qr {{3.802}}\cell
+\qr {{.25}}\cell
+\qr {{68.5}}\cell
+\row
+\ql { { debt}}\cell
+\qr {{3120}}\cell
+\qr {{419.394}}\cell
+\qr {{536.93}}\cell
+\qr {{6.928}}\cell
+\qr {{3816.492}}\cell
+\row
+\ql { { id}}\cell
+\qr {{3120}}\cell
+\qr {{1560.5}}\cell
+\qr {{900.811}}\cell
+\qr {{1}}\cell
+\qr {{3120}}\cell
+\row
+\ql { { n1}}\cell
+\qr {{3120}}\cell
+\qr {{2383.522}}\cell
+\qr {{433.873}}\cell
+\qr {{97}}\cell
+\qr {{3120}}\cell
+\row
+\ql { { n2}}\cell
+\qr {{3120}}\cell
+\qr {{2383.579}}\cell
+\qr {{433.874}}\cell
+\qr {{96}}\cell
+\qr {{3120}}\cell
+\row
+\ql { { n3}}\cell
+\qr {{3120}}\cell
+\qr {{2383.606}}\cell
+\qr {{433.841}}\cell
+\qr {{98}}\cell
+\qr {{3118}}\cell
+\row
+\ql { { n4}}\cell
+\qr {{3120}}\cell
+\qr {{2383.691}}\cell
+\qr {{433.811}}\cell
+\qr {{95}}\cell
+\qr {{3118}}\cell
+\row
+\ql { { nn}}\cell
+\qr {{3120}}\cell
+\qr {{4}}\cell
+\qr {{0}}\cell
+\qr {{4}}\cell
+\qr {{4}}\cell
+\row
+\ql { { pdif}}\cell
+\qr {{3120}}\cell
+\qr {{.001}}\cell
+\qr {{.002}}\cell
+\qr {{0}}\cell
+\qr {{.021}}\cell
+\row
+\ql { {weight}}\cell
+\qr {{1974}}\cell
+\qr {{1.581}}\cell
+\qr {{3.802}}\cell
+\qr {{.25}}\cell
+\qr {{68.5}}\cell
+\row
+\ql { { est psm did}}\cell
+\qr {{3120}}\cell
+\qr {{.633}}\cell
+\qr {{.482}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {pseudo did}}\cell
+\qr {{3120}}\cell
+\qr {{.496}}\cell
+\qr {{.5}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est placebo}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est exclude sub p~l}}\cell
+\qr {{3120}}\cell
+\qr {{.88}}\cell
+\qr {{.325}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est exclude auton~n}}\cell
+\qr {{3120}}\cell
+\qr {{.923}}\cell
+\qr {{.267}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est exclude count~y}}\cell
+\qr {{3120}}\cell
+\qr {{.894}}\cell
+\qr {{.308}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {did once}}\cell
+\qr {{3120}}\cell
+\qr {{.186}}\cell
+\qr {{.389}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { {did multiple}}\cell
+\qr {{3120}}\cell
+\qr {{.05}}\cell
+\qr {{.218}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est hetero did once}}\cell
+\qr {{3120}}\cell
+\qr {{.95}}\cell
+\qr {{.219}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est hetero did mu~e}}\cell
+\qr {{3120}}\cell
+\qr {{.814}}\cell
+\qr {{.389}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est hetero fp}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est hetero pre 2014}}\cell
+\qr {{3120}}\cell
+\qr {{.4}}\cell
+\qr {{.49}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est hetero pos~2014}}\cell
+\qr {{3120}}\cell
+\qr {{.6}}\cell
+\qr {{.49}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land ltr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land lta}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land ltp}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land cltr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land clta}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land cltp}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land iltr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land ilta}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land iltp}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land sltr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land slta}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land sltp}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land gltr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est fiscal tr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est fiscal vatr}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est fiscal eal}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban ilta}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban lri}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban ue}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban light sum}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban light a~e}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban ici}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est urban imc}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+\ql { { est land fc}}\cell
+\qr {{3120}}\cell
+\qr {{1}}\cell
+\qr {{0}}\cell
+\qr {{1}}\cell
+\qr {{1}}\cell
+\row
+}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw15\brdrs\cellx8800{}\cell
+\row}
+
+
+\writepositionforappend
+}}

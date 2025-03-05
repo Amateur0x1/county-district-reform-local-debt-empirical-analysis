@@ -24,8 +24,9 @@
 \ql \cell\qc (1,128)\cell\row
 \ql \cell\qc \cell\row
 \ql Observations\cell\qc 3,120\cell\row
-\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5040
 \ql R-squared\cell\qc 0.392\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5040
+\ql Controls\cell\qc N\cell\row
 \pard\qc
 Standard errors in parentheses\par
 *** p<0.01, ** p<0.05, * p<0.1\par

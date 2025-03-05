@@ -1,0 +1,15 @@
+	(1)	(2)	(3)	(4)	(5)
+VARIABLES	Robustness: PSM-DID	Robustness: Placebo Test	Robustness: Excluding Sub-Provincial Cities	Robustness: Excluding Autonomous Regions	Robustness: Excluding Interfering Policies
+					
+did	132.7***		76.98***	187.8***	201.4***
+	(38.22)		(19.06)	(26.74)	(28.74)
+pseudo_did		-14.06			
+		(14.21)			
+Constant	491.9***	-503.8	-2,596***	-395.3	-946.6
+	(16.81)	(580.0)	(408.8)	(598.5)	(636.7)
+					
+Observations	1,974	3,120	2,745	2,880	2,790
+R-squared	0.798	0.746	0.702	0.758	0.751
+Controls	Y	Y	Y	Y	Y
+Standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					

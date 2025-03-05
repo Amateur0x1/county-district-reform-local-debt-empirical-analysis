@@ -12,8 +12,9 @@
 \ql \cell\qc (3.421)\cell\qc (0.639)\cell\qc (161.7)\cell\row
 \ql \cell\qc \cell\qc \cell\qc \cell\row
 \ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\row
-\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5904\clbrdrb\brdrs\cellx9936\clbrdrb\brdrs\cellx15552
 \ql R-squared\cell\qc 0.615\cell\qc 0.800\cell\qc 0.141\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5904\clbrdrb\brdrs\cellx9936\clbrdrb\brdrs\cellx15552
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
 \pard\qc
 Standard errors in parentheses\par
 *** p<0.01, ** p<0.05, * p<0.1\par
