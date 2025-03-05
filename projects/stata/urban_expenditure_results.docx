@@ -1,20 +1,20 @@
 {\rtf1\fs24
-\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx8208\clbrdrt\brdrs\cellx15840\clbrdrt\brdrs\cellx20448\clbrdrt\brdrs\cellx25920\clbrdrt\brdrs\cellx32256\clbrdrt\brdrs\cellx39168\clbrdrt\brdrs\cellx45648\clbrdrt\brdrs\cellx50832
-\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\qc (6)\cell\qc (7)\cell\qc (8)\cell\row
-\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx15840\cellx20448\cellx25920\cellx32256\cellx39168\cellx45648\cellx50832
-\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx15840\clbrdrb\brdrs\cellx20448\clbrdrb\brdrs\cellx25920\clbrdrb\brdrs\cellx32256\clbrdrb\brdrs\cellx39168\clbrdrb\brdrs\cellx45648\clbrdrb\brdrs\cellx50832
-\ql VARIABLES\cell\qc Urban Expenditure: Industrial Land Transfer\cell\qc Urban Expenditure: Land Resource Misallocation Index\cell\qc Urban Expenditure: Urban Sprawl\cell\qc Urban Expenditure: Urban Sprawl Index\cell\qc Urban Expenditure: Urban Sprawl (Light Sum)\cell\qc Urban Expenditure: Urban Sprawl (Light Average)\cell\qc Urban Expenditure: Infrastructure Investment\cell\qc Urban Expenditure: Maintenance Cost\cell\row
-\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx15840\cellx20448\cellx25920\cellx32256\cellx39168\cellx45648\cellx50832
-\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
-\ql did\cell\qc -21.36**\cell\qc 0.188*\cell\qc -0.00763*\cell\qc -0.412***\cell\qc 12,819***\cell\qc 0.00230\cell\qc 0.184***\cell\qc -191.6***\cell\row
-\ql \cell\qc (8.389)\cell\qc (0.111)\cell\qc (0.00463)\cell\qc (0.101)\cell\qc (1,460)\cell\qc (0.0132)\cell\qc (0.0585)\cell\qc (51.16)\cell\row
-\ql Constant\cell\qc -409.9**\cell\qc 2.847\cell\qc 0.448***\cell\qc 10.87***\cell\qc 109,470***\cell\qc -3.613***\cell\qc 1.895\cell\qc -2,094*\cell\row
-\ql \cell\qc (184.9)\cell\qc (2.447)\cell\qc (0.102)\cell\qc (2.236)\cell\qc (32,194)\cell\qc (0.291)\cell\qc (1.290)\cell\qc (1,128)\cell\row
-\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
-\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\row
-\ql R-squared\cell\qc 0.696\cell\qc 0.138\cell\qc 0.855\cell\qc 0.598\cell\qc 0.906\cell\qc 0.976\cell\qc 0.743\cell\qc 0.392\cell\row
-\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx15840\clbrdrb\brdrs\cellx20448\clbrdrb\brdrs\cellx25920\clbrdrb\brdrs\cellx32256\clbrdrb\brdrs\cellx39168\clbrdrb\brdrs\cellx45648\clbrdrb\brdrs\cellx50832
-\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx8208\clbrdrt\brdrs\cellx15840\clbrdrt\brdrs\cellx23472\clbrdrt\brdrs\cellx28080\clbrdrt\brdrs\cellx33552\clbrdrt\brdrs\cellx39888\clbrdrt\brdrs\cellx46800\clbrdrt\brdrs\cellx53280\clbrdrt\brdrs\cellx58464
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\qc (6)\cell\qc (7)\cell\qc (8)\cell\qc (9)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx15840\cellx23472\cellx28080\cellx33552\cellx39888\cellx46800\cellx53280\cellx58464
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx15840\clbrdrb\brdrs\cellx23472\clbrdrb\brdrs\cellx28080\clbrdrb\brdrs\cellx33552\clbrdrb\brdrs\cellx39888\clbrdrb\brdrs\cellx46800\clbrdrb\brdrs\cellx53280\clbrdrb\brdrs\cellx58464
+\ql VARIABLES\cell\qc Urban Expenditure: Industrial Land Transfer\cell\qc Urban Expenditure: Land Resource Misallocation Index\cell\qc Urban Expenditure: Land Resource Misallocation Index\cell\qc Urban Expenditure: Urban Sprawl\cell\qc Urban Expenditure: Urban Sprawl Index\cell\qc Urban Expenditure: Urban Sprawl (Light Sum)\cell\qc Urban Expenditure: Urban Sprawl (Light Average)\cell\qc Urban Expenditure: Infrastructure Investment\cell\qc Urban Expenditure: Maintenance Cost\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx15840\cellx23472\cellx28080\cellx33552\cellx39888\cellx46800\cellx53280\cellx58464
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc -21.36**\cell\qc 0.188*\cell\qc 1.275\cell\qc -0.00763*\cell\qc -0.412***\cell\qc 12,819***\cell\qc 0.00230\cell\qc 0.184***\cell\qc -191.6***\cell\row
+\ql \cell\qc (8.389)\cell\qc (0.111)\cell\qc (2.657)\cell\qc (0.00463)\cell\qc (0.101)\cell\qc (1,460)\cell\qc (0.0132)\cell\qc (0.0585)\cell\qc (51.16)\cell\row
+\ql Constant\cell\qc -409.9**\cell\qc 2.847\cell\qc 306.8***\cell\qc 0.448***\cell\qc 10.87***\cell\qc 109,470***\cell\qc -3.613***\cell\qc 1.895\cell\qc -2,094*\cell\row
+\ql \cell\qc (184.9)\cell\qc (2.447)\cell\qc (58.58)\cell\qc (0.102)\cell\qc (2.236)\cell\qc (32,194)\cell\qc (0.291)\cell\qc (1.290)\cell\qc (1,128)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\qc 3,120\cell\row
+\ql R-squared\cell\qc 0.696\cell\qc 0.138\cell\qc 0.363\cell\qc 0.855\cell\qc 0.598\cell\qc 0.906\cell\qc 0.976\cell\qc 0.743\cell\qc 0.392\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx15840\clbrdrb\brdrs\cellx23472\clbrdrb\brdrs\cellx28080\clbrdrb\brdrs\cellx33552\clbrdrb\brdrs\cellx39888\clbrdrb\brdrs\cellx46800\clbrdrb\brdrs\cellx53280\clbrdrb\brdrs\cellx58464
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
 \pard\qc
 Standard errors in parentheses\par
 *** p<0.01, ** p<0.05, * p<0.1\par

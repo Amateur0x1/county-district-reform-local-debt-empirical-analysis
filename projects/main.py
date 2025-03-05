@@ -512,7 +512,7 @@ def process_data(file_name):
     process_city_expansion_index_data(file_name, Constant.cities, Constant.years)
 
 # 土地出让数据
-def process_land_sale_data():
+def process_land_sale_data(treat_zeros_as_missing: bool = True, replace_negative_with_nearest_positive: bool = False):
     input_file = "projects/data/土地出让true.csv"
     output_file = "projects/data/output_土地出让true.csv"
     
@@ -540,7 +540,7 @@ def process_land_sale_data():
     
     # 保留需要的列
     keep_columns = ['年份', '省', '省代码', '市', '市代码',
-                   '供地面积_公顷', '供地方式', '行业分类', '成交价格_万元', '土地来源']
+                   '供地面积_公顷', '供地方式', '行业分类', '成交价格_万元', '土地来源', '土地用途']
     df = df[keep_columns]
     
     # 将数值列转换为数值类型
@@ -618,12 +618,49 @@ def process_land_sale_data():
     )
     land_source_pivot = land_source_pivot.add_prefix('土地来源_')
     
+    # 3.1 处理土地用途
+    land_use_pivot = pd.pivot_table(
+        df,
+        values='供地面积_公顷',
+        index=['市', '年份'],
+        columns=['土地用途'],
+        aggfunc='sum',
+        fill_value=0
+    )
+    land_use_pivot = land_use_pivot.add_prefix('土地用途_')
+    
+    # 3.2 计算土地用途的平均价格
+    land_use_price = pd.DataFrame()
+    for land_use in df['土地用途'].unique():
+        if pd.isna(land_use):
+            continue
+        # 过滤特定土地用途的数据
+        filtered_df = df[df['土地用途'] == land_use]
+        # 按市和年份分组
+        grouped = filtered_df.groupby(['市', '年份'], observed=True)
+        # 计算总价格和总面积
+        total_price = grouped['成交价格_万元'].sum()
+        total_area = grouped['供地面积_公顷'].sum()
+        # 计算平均价格
+        avg_price = (total_price / total_area).replace([np.inf, -np.inf], 0).fillna(0)
+        # 添加到结果DataFrame
+        land_use_price[f'土地用途_价格_{land_use}'] = avg_price
+        
+        # 调试信息：打印每种土地用途的价格计算情况
+        non_zero_count = (avg_price > 0).sum()
+        total_count = len(avg_price)
+        print(f"土地用途 '{land_use}' 的价格计算: 总记录数={total_count}, 非零价格记录数={non_zero_count}")
+        if non_zero_count > 0:
+            print(f"  - 平均价格范围: 最小={avg_price[avg_price > 0].min()}, 最大={avg_price.max()}, 平均={avg_price[avg_price > 0].mean()}")
+    
     # 将所有NaN值替换为0
     supply_type_pivot = supply_type_pivot.fillna(0)
     supply_type_price = supply_type_price.fillna(0)
     industry_pivot = industry_pivot.fillna(0)
     industry_price = industry_price.fillna(0)
     land_source_pivot = land_source_pivot.fillna(0)
+    land_use_pivot = land_use_pivot.fillna(0)
+    land_use_price = land_use_price.fillna(0)
     
     # 4. 计算总面积和加权平均价格
     # 使用更简单的方法计算加权平均价格
@@ -640,7 +677,7 @@ def process_land_sale_data():
     agg_df = agg_df.fillna(0)
     
     # 合并所有数据
-    result = pd.concat([agg_df, supply_type_pivot, supply_type_price, industry_pivot, industry_price, land_source_pivot], axis=1)
+    result = pd.concat([agg_df, supply_type_pivot, supply_type_price, industry_pivot, industry_price, land_source_pivot, land_use_pivot, land_use_price], axis=1)
     result = result.reset_index()
     
     # 5. 对行业分类进行横向合并（制造业、房地产业、高科技产业、生产性服务业、消费性服务业）
@@ -726,6 +763,29 @@ def process_land_sale_data():
     
     result['第三产业_总面积'] = 0
     result['第三产业_总价值'] = 0
+    
+    # 新增商住用地和工业用地的总面积和总价值列
+    result['商住用地_总面积'] = 0
+    result['商住用地_总价值'] = 0
+    
+    result['工业用地_总面积'] = 0
+    result['工业用地_总价值'] = 0
+    
+    # 定义土地用途分类
+    # 商住用地
+    commercial_residential_land = [
+        '城镇住宅-普通商品住房用地', '城镇住宅-经济适用住房用地', '城镇住宅-公共租赁住房用地', 
+        '城镇住宅-用于安置的商品住房用地 ', '城镇住宅-共有产权住房用地', '保障性租赁住房',
+        '旅馆用地', '商务金融用地', '零售商业用地', '批发市场用地', '餐饮用地', '娱乐用地',
+        '其他普通商品住房用地', '中低价位、中小套型普通商品住房用地', '经济适用住房用地',
+        '商服用地', '住宿餐饮用地', '廉租住房用地', '其他住房用地', '高档住宅用地',
+        '公共租赁住房用地', '住宅用地', '城镇住宅-租赁型商品住房用地', '批发零售用地'
+    ]
+    
+    # 工业用地
+    industrial_land = [
+        '工业用地', '仓储用地', '采矿用地', '工矿仓储用地'
+    ]
     
     # 计算制造业总面积和总价值
     for industry in manufacturing:
@@ -839,6 +899,38 @@ def process_land_sale_data():
                 mask = (result[area_col] > 0) & (~valid_price.isna())
                 result.loc[mask, '第三产业_总价值'] += result.loc[mask, area_col] * result.loc[mask, price_col]
     
+    # 计算商住用地总面积和总价值
+    for land_use in commercial_residential_land:
+        area_col = f'土地用途_{land_use}'
+        price_col = f'土地用途_价格_{land_use}'
+        
+        if area_col in result.columns:
+            result['商住用地_总面积'] += result[area_col]
+            
+            # 计算该类型土地的总价值（面积 × 价格）
+            if price_col in result.columns:
+                # 确保价格不为0，避免计算出0值
+                valid_price = result[price_col].replace(0, np.nan)
+                # 只在有效价格和面积大于0的情况下计算总价值
+                mask = (result[area_col] > 0) & (~valid_price.isna())
+                result.loc[mask, '商住用地_总价值'] += result.loc[mask, area_col] * result.loc[mask, price_col]
+                
+    # 计算工业用地总面积和总价值
+    for land_use in industrial_land:
+        area_col = f'土地用途_{land_use}'
+        price_col = f'土地用途_价格_{land_use}'
+        
+        if area_col in result.columns:
+            result['工业用地_总面积'] += result[area_col]
+            
+            # 计算该类型土地的总价值（面积 × 价格）
+            if price_col in result.columns:
+                # 确保价格不为0，避免计算出0值
+                valid_price = result[price_col].replace(0, np.nan)
+                # 只在有效价格和面积大于0的情况下计算总价值
+                mask = (result[area_col] > 0) & (~valid_price.isna())
+                result.loc[mask, '工业用地_总价值'] += result.loc[mask, area_col] * result.loc[mask, price_col]
+    
     print("制造业总面积大于0的记录数:", (result['制造业_总面积'] > 0).sum())
     print("制造业总价值大于0的记录数:", (result['制造业_总价值'] > 0).sum())
     print("房地产业总面积大于0的记录数:", (result['房地产业_总面积'] > 0).sum())
@@ -853,91 +945,10 @@ def process_land_sale_data():
     print("第二产业总价值大于0的记录数:", (result['第二产业_总价值'] > 0).sum())
     print("第三产业总面积大于0的记录数:", (result['第三产业_总面积'] > 0).sum())
     print("第三产业总价值大于0的记录数:", (result['第三产业_总价值'] > 0).sum())
-    
-    # 输出一些样本数据，帮助分析
-    print("\n制造业样本数据（前5条）:")
-    sample_manufacturing = result[result['制造业_总面积'] > 0].head(5)
-    for _, row in sample_manufacturing.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 制造业总面积: {row['制造业_总面积']}, 制造业总价值: {row['制造业_总价值']}")
-    
-    print("\n房地产业样本数据（前5条）:")
-    sample_real_estate = result[result['房地产业_总面积'] > 0].head(5)
-    for _, row in sample_real_estate.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 房地产业总面积: {row['房地产业_总面积']}, 房地产业总价值: {row['房地产业_总价值']}")
-        
-    print("\n高科技产业样本数据（前5条）:")
-    sample_high_tech = result[result['高科技产业_总面积'] > 0].head(5)
-    for _, row in sample_high_tech.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 高科技产业总面积: {row['高科技产业_总面积']}, 高科技产业总价值: {row['高科技产业_总价值']}")
-        
-    print("\n生产性服务业样本数据（前5条）:")
-    sample_producer = result[result['生产性服务业_总面积'] > 0].head(5)
-    for _, row in sample_producer.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 生产性服务业总面积: {row['生产性服务业_总面积']}, 生产性服务业总价值: {row['生产性服务业_总价值']}")
-        
-    print("\n消费性服务业样本数据（前5条）:")
-    sample_consumer = result[result['消费性服务业_总面积'] > 0].head(5)
-    for _, row in sample_consumer.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 消费性服务业总面积: {row['消费性服务业_总面积']}, 消费性服务业总价值: {row['消费性服务业_总价值']}")
-    
-    print("\n第二产业样本数据（前5条）:")
-    sample_secondary = result[result['第二产业_总面积'] > 0].head(5)
-    for _, row in sample_secondary.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 第二产业总面积: {row['第二产业_总面积']}, 第二产业总价值: {row['第二产业_总价值']}")
-        
-    print("\n第三产业样本数据（前5条）:")
-    sample_tertiary = result[result['第三产业_总面积'] > 0].head(5)
-    for _, row in sample_tertiary.iterrows():
-        print(f"市: {row['市']}, 年份: {row['年份']}, 第三产业总面积: {row['第三产业_总面积']}, 第三产业总价值: {row['第三产业_总价值']}")
-    
-    # 检查原始行业分类列
-    industry_columns = [col for col in result.columns if col.startswith('行业分类_') and not col.startswith('行业分类_价格_')]
-    if industry_columns:
-        print("\n存在的行业分类列:", industry_columns[:10], "..." if len(industry_columns) > 10 else "")
-    
-    # 检查行业分类价格列
-    industry_price_columns = [col for col in result.columns if col.startswith('行业分类_价格_')]
-    if industry_price_columns:
-        print("\n存在的行业分类价格列:", industry_price_columns[:10], "..." if len(industry_price_columns) > 10 else "")
-    
-    # 计算制造业、高科技产业、生产性服务业、消费性服务业的加权平均价格
-    # 只在总面积大于0时计算平均价格
-    result['制造业_平均价格'] = 0
-    mask = result['制造业_总面积'] > 0
-    result.loc[mask, '制造业_平均价格'] = (result.loc[mask, '制造业_总价值'] / result.loc[mask, '制造业_总面积']).round(2)
-    
-    result['房地产业_平均价格'] = 0
-    mask = result['房地产业_总面积'] > 0
-    result.loc[mask, '房地产业_平均价格'] = (result.loc[mask, '房地产业_总价值'] / result.loc[mask, '房地产业_总面积']).round(2)
-    
-    result['高科技产业_平均价格'] = 0
-    mask = result['高科技产业_总面积'] > 0
-    result.loc[mask, '高科技产业_平均价格'] = (result.loc[mask, '高科技产业_总价值'] / result.loc[mask, '高科技产业_总面积']).round(2)
-    
-    result['生产性服务业_平均价格'] = 0
-    mask = result['生产性服务业_总面积'] > 0
-    result.loc[mask, '生产性服务业_平均价格'] = (result.loc[mask, '生产性服务业_总价值'] / result.loc[mask, '生产性服务业_总面积']).round(2)
-    
-    result['消费性服务业_平均价格'] = 0
-    mask = result['消费性服务业_总面积'] > 0
-    result.loc[mask, '消费性服务业_平均价格'] = (result.loc[mask, '消费性服务业_总价值'] / result.loc[mask, '消费性服务业_总面积']).round(2)
-    
-    result['第二产业_平均价格'] = 0
-    mask = result['第二产业_总面积'] > 0
-    result.loc[mask, '第二产业_平均价格'] = (result.loc[mask, '第二产业_总价值'] / result.loc[mask, '第二产业_总面积']).round(2)
-    
-    result['第三产业_平均价格'] = 0
-    mask = result['第三产业_总面积'] > 0
-    result.loc[mask, '第三产业_平均价格'] = (result.loc[mask, '第三产业_总价值'] / result.loc[mask, '第三产业_总面积']).round(2)
-    
-    # 检查计算结果
-    print("制造业平均价格大于0的记录数:", (result['制造业_平均价格'] > 0).sum())
-    print("房地产业平均价格大于0的记录数:", (result['房地产业_平均价格'] > 0).sum())
-    print("高科技产业平均价格大于0的记录数:", (result['高科技产业_平均价格'] > 0).sum())
-    print("生产性服务业平均价格大于0的记录数:", (result['生产性服务业_平均价格'] > 0).sum())
-    print("消费性服务业平均价格大于0的记录数:", (result['消费性服务业_平均价格'] > 0).sum())
-    print("第二产业平均价格大于0的记录数:", (result['第二产业_平均价格'] > 0).sum())
-    print("第三产业平均价格大于0的记录数:", (result['第三产业_平均价格'] > 0).sum())
+    print("商住用地总面积大于0的记录数:", (result['商住用地_总面积'] > 0).sum())
+    print("商住用地总价值大于0的记录数:", (result['商住用地_总价值'] > 0).sum())
+    print("工业用地总面积大于0的记录数:", (result['工业用地_总面积'] > 0).sum())
+    print("工业用地总价值大于0的记录数:", (result['工业用地_总价值'] > 0).sum())
     
     # 计算每个城市的观测数据数量并过滤
     city_counts = result.groupby('市', observed=True).size()
@@ -955,22 +966,31 @@ def process_land_sale_data():
     result = result.reindex(city_year_combinations)
     result = result.reset_index()
     
-    # 处理缺失值 - 移到所有计算完成后
-    cleaner = DataCleaner(result)  # 现在可以直接传入DataFrame
-    numeric_columns = ['供地面积_公顷', '成交价格_万元', '平均价格_万元每公顷'] + \
-                     [col for col in result.columns if col.startswith(('供地方式_', '土地来源_', '供地方式_价格_', '制造业_', '房地产业_', '高科技产业_', '生产性服务业_', '消费性服务业_', '第二产业_', '第三产业_'))]
+    # 确保所有行业和用地类型列都存在，如果不存在则创建并填充为0
+    industry_columns = [
+        '制造业_总面积', '制造业_总价值', '制造业_平均价格',
+        '房地产业_总面积', '房地产业_总价值', '房地产业_平均价格',
+        '高科技产业_总面积', '高科技产业_总价值', '高科技产业_平均价格',
+        '生产性服务业_总面积', '生产性服务业_总价值', '生产性服务业_平均价格',
+        '消费性服务业_总面积', '消费性服务业_总价值', '消费性服务业_平均价格',
+        '第二产业_总面积', '第二产业_总价值', '第二产业_平均价格',
+        '第三产业_总面积', '第三产业_总价值', '第三产业_平均价格'
+    ]
     
-    # 现在进行插值填充
-    for column in numeric_columns:
-        cleaner.interpolate_missing_data(column, '市', '年份')
+    land_use_columns = [
+        '商住用地_总面积', '商住用地_总价值', '商住用地_平均价格',
+        '工业用地_总面积', '工业用地_总价值', '工业用地_平均价格'
+    ]
     
-    result = cleaner.data
+    for col in industry_columns + land_use_columns:
+        if col not in result.columns:
+            result[col] = 0
     
     # 只对数值列进行0填充，保持分类列不变
     numeric_columns = result.select_dtypes(include=['float64', 'int64']).columns
     result[numeric_columns] = result[numeric_columns].fillna(0)
     
-    # 计算制造业、高科技产业、生产性服务业、消费性服务业的占比
+    # 计算各行业占比
     result['制造业_占比'] = (result['制造业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
     result['房地产业_占比'] = (result['房地产业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
     result['高科技产业_占比'] = (result['高科技产业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
@@ -978,6 +998,22 @@ def process_land_sale_data():
     result['消费性服务业_占比'] = (result['消费性服务业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
     result['第二产业_占比'] = (result['第二产业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
     result['第三产业_占比'] = (result['第三产业_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
+    result['商住用地_占比'] = (result['商住用地_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
+    result['工业用地_占比'] = (result['工业用地_总面积'] / result['供地面积_公顷']).replace([np.inf, -np.inf], 0).fillna(0).round(4)
+    
+    # 计算各行业平均价格
+    result['制造业_平均价格'] = (result['制造业_总价值'] / result['制造业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['房地产业_平均价格'] = (result['房地产业_总价值'] / result['房地产业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['高科技产业_平均价格'] = (result['高科技产业_总价值'] / result['高科技产业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['生产性服务业_平均价格'] = (result['生产性服务业_总价值'] / result['生产性服务业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['消费性服务业_平均价格'] = (result['消费性服务业_总价值'] / result['消费性服务业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['第二产业_平均价格'] = (result['第二产业_总价值'] / result['第二产业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['第三产业_平均价格'] = (result['第三产业_总价值'] / result['第三产业_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['商住用地_平均价格'] = (result['商住用地_总价值'] / result['商住用地_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    result['工业用地_平均价格'] = (result['工业用地_总价值'] / result['工业用地_总面积']).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    
+    # 更新cleaner中的数据，确保包含新计算的列
+    cleaner = DataCleaner(result)  # 现在可以直接传入DataFrame
     
     # 删除计算用的列，只保留合并后的列
     # 获取要保留的列
@@ -988,25 +1024,51 @@ def process_land_sale_data():
                     '生产性服务业_总面积', '生产性服务业_总价值', '生产性服务业_平均价格', '生产性服务业_占比',
                     '消费性服务业_总面积', '消费性服务业_总价值', '消费性服务业_平均价格', '消费性服务业_占比',
                     '第二产业_总面积', '第二产业_总价值', '第二产业_平均价格', '第二产业_占比',
-                    '第三产业_总面积', '第三产业_总价值', '第三产业_平均价格', '第三产业_占比']
+                    '第三产业_总面积', '第三产业_总价值', '第三产业_平均价格', '第三产业_占比',
+                    '商住用地_总面积', '商住用地_总价值', '商住用地_平均价格', '商住用地_占比',
+                    '工业用地_总面积', '工业用地_总价值', '工业用地_平均价格', '工业用地_占比']
     
     # 添加土地来源列
     for col in result.columns:
-        if col.startswith('土地来源_'):
-            keep_columns.append(col)
-    
-    # 添加供地方式列
-    for col in result.columns:
-        if col.startswith('供地方式_') and not col.startswith('供地方式_价格_'):
-            keep_columns.append(col)
+        if col.startswith('土地来源_') or col.startswith('供地方式_'):
+            if not col.startswith('供地方式_价格_'):
+                keep_columns.append(col)
     
     # 添加供地方式价格列
     for col in result.columns:
-        if col.startswith('供地方式_价格_'):
+        if col.startswith('供地方式_价格_') and 'nan' not in col:
             keep_columns.append(col)
     
     # 只保留需要的列
     result = result[keep_columns]
+    
+    # 现在进行插值填充，移到所有计算完成后
+    cleaner = DataCleaner(result)  # 更新cleaner以使用过滤后的数据
+    
+    # 获取所有要处理的列，排除非数值列和包含'nan'的列
+    columns_to_interpolate = [col for col in result.columns if col not in ['市', '年份'] and 'nan' not in col]
+    
+    # 打印要处理的列
+    print(f"将对以下 {len(columns_to_interpolate)} 列进行插值处理:")
+    
+    # 对每一列进行插值处理，将0值视为缺失值
+    for col in columns_to_interpolate:
+        if col in result.columns:
+            try:
+                if pd.api.types.is_numeric_dtype(result[col]):
+                    print(f"  - 处理列: {col}")
+                    # 使用新参数treat_zeros_as_missing=True，将0值视为缺失值进行插值
+                    cleaner.interpolate_missing_data(
+                        y_column=col, 
+                        id_column='市', 
+                        x_column='年份', 
+                        treat_zeros_as_missing=treat_zeros_as_missing,
+                        replace_negative_with_nearest_positive=replace_negative_with_nearest_positive
+                    )
+            except Exception as e:
+                print(f"  - 处理列 {col} 时出错: {e}")
+    
+    result = cleaner.data
     
     # 使用 Constant.cities 的顺序进行排序
     result['市'] = pd.Categorical(result['市'], categories=Constant.cities, ordered=True)
@@ -1181,14 +1243,14 @@ def process_regression_data():
     # 保存处理后的数据
     regression_cleaner.close_file_and_save()
 
-def main(input_file, output_file):
+def main():
     # Tools.copy_file(input_file, output_file)
     # process_data(output_file)
-    # process_land_sale_data()
-    process_regression_data()
+    process_land_sale_data(treat_zeros_as_missing=True, replace_negative_with_nearest_positive=True)
+    # process_regression_data()
 
 
 if __name__ == "__main__":
     input_file = "projects/data/data_copy.xlsx"
     output_file = "projects/data/data_cleaning.xlsx"
-    main(input_file, output_file)
+    main()

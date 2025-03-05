@@ -122,67 +122,92 @@ class DataCleaner:
         self.data = self.data.sort_values(by=sort_priority).reset_index(drop=True)
 
     @timeit
-    def interpolate_missing_data(self, y_column: str, id_column: str, x_column: str) -> None:
+    def interpolate_missing_data(self, y_column: str, id_column: str, x_column: str, 
+                                treat_zeros_as_missing: bool = False,
+                                replace_negative_with_nearest_positive: bool = False) -> None:
         """
-        对指定列中的缺失值进行插值处理，首尾使用线性回归，中间使用插值法
+        使用线性回归对缺失数据进行插值
         
         参数:
-            y_column (str): 需要插值的数值列名
-            id_column (str): 分组ID列名(如城市或省份)
-            x_column (str): 年份列名
-            
-        异常:
-            ValueError: 当指定的列名不存在或数据类型不正确时抛出
+        y_column: 需要插值的列名
+        id_column: 分组的ID列名（如城市）
+        x_column: 自变量列名（如年份）
+        treat_zeros_as_missing: 是否将0值视为缺失值
+        replace_negative_with_nearest_positive: 是否将负值替换为最近年份的正值
         """
         # 验证列是否存在
         required_columns = [y_column, id_column, x_column]
-        if not all(col in self.data.columns for col in required_columns):
-            missing_cols = [col for col in required_columns if col not in self.data.columns]
-            raise ValueError(f"以下列不存在: {missing_cols}")
-            
-        # 确保数据类型正确
-        try:
-            self.data[y_column] = pd.to_numeric(self.data[y_column])
-            self.data[x_column] = pd.to_numeric(self.data[x_column])
-        except ValueError:
-            raise ValueError(f"列 '{y_column}' 或 '{x_column}' 包含非数值数据")
-            
-        # 按ID分组处理
-        for group_id in self.data[id_column].unique():
-            mask = self.data[id_column] == group_id
-            group_data = self.data.loc[mask].copy()
-            
-            # 如果组内有缺失值才进行处理
-            if group_data[y_column].isna().any():
-                # 获取非缺失值的索引
-                valid_idx = group_data[y_column].notna()
-                years = group_data.loc[valid_idx, x_column].values
-                values = group_data.loc[valid_idx, y_column].values
-                
-                if len(years) >= 2:  # 至少需要两个点才能进行线性回归
-                    # 计算线性回归系数
-                    coeffs = np.polyfit(years, values, 1)
-                    
-                    # 处理首尾缺失值
-                    all_years = group_data[x_column].values
-                    predicted_values = np.polyval(coeffs, all_years)
-                    
-                    # 对中间的缺失值进行插值
-                    interpolated = pd.Series(predicted_values, index=group_data.index)
-                    interpolated.loc[valid_idx] = values  # 保持原有的非缺失值不变
-                    
-                    # 对中间的缺失值使用分段插值
-                    middle_values = interpolated.copy()
-                    middle_values = middle_values.interpolate(method='linear')
-                    
-                    # 更新数据
-                    self.data.loc[mask, y_column] = middle_values
-                    
-        # 处理完所有分组后，检查是否还有遗留的缺失值
-        remaining_na = self.data[y_column].isna().sum()
-        if remaining_na > 0:
-            print(f"警告: 仍有 {remaining_na} 个缺失值无法通过插值处理")
+        for col in required_columns:
+            if col not in self.data.columns:
+                raise ValueError(f"列 {col} 不存在于数据中")
         
+        # 确保数据类型正确
+        if not pd.api.types.is_numeric_dtype(self.data[y_column]):
+            raise ValueError(f"列 {y_column} 必须是数值类型")
+        
+        # 创建一个副本以避免修改原始数据
+        data = self.data.copy()
+        
+        # 如果需要将0值视为缺失值
+        if treat_zeros_as_missing:
+            # 将y_column中的0值替换为NaN
+            data.loc[data[y_column] == 0, y_column] = np.nan
+        
+        # 获取唯一的分组值（如城市）
+        groups = data[id_column].unique()
+        
+        # 对每个分组进行处理
+        for group in groups:
+            # 获取当前分组的数据
+            group_data = data[data[id_column] == group].copy()
+            
+            # 如果当前分组的数据中y_column没有缺失值，则跳过
+            if not group_data[y_column].isna().any():
+                continue
+            
+            # 获取非缺失值的数据点
+            valid_data = group_data.dropna(subset=[y_column])
+            
+            # 如果非缺失值数据点少于2个，则无法进行线性回归，跳过
+            if len(valid_data) < 2:
+                continue
+            
+            # 准备线性回归的数据
+            X = valid_data[x_column].values
+            y = valid_data[y_column].values
+            
+            # 使用numpy进行线性回归
+            A = np.vstack([X, np.ones(len(X))]).T
+            slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+            
+            # 获取缺失值的索引
+            missing_indices = group_data[group_data[y_column].isna()].index
+            
+            # 对缺失值进行预测
+            for idx in missing_indices:
+                x_val = self.data.loc[idx, x_column]
+                predicted_value = slope * x_val + intercept
+                
+                # 如果需要替换负值为最近年份的正值
+                if replace_negative_with_nearest_positive and predicted_value < 0:
+                    # 获取当前分组中所有正值数据
+                    positive_data = valid_data[valid_data[y_column] > 0]
+                    
+                    if not positive_data.empty:
+                        # 计算年份差异，找到最近的年份
+                        positive_data['year_diff'] = abs(positive_data[x_column] - x_val)
+                        nearest_idx = positive_data['year_diff'].idxmin()
+                        nearest_positive = positive_data.loc[nearest_idx, y_column]
+                        
+                        # 用最近年份的正值替换预测的负值
+                        self.data.loc[idx, y_column] = nearest_positive
+                    else:
+                        # 如果没有正值，则使用0
+                        self.data.loc[idx, y_column] = 0
+                else:
+                    # 将预测值填充到原始数据中
+                    self.data.loc[idx, y_column] = predicted_value
+
     @timeit
     def create_panel_dataset(self, index_columns: list[str], index_values: dict[str, list]) -> None:
         """
