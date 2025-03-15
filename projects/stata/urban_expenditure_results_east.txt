@@ -1,0 +1,13 @@
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)	(10)
+VARIABLES	Urban Expenditure (East): Industrial Land Transfer	Urban Expenditure (East): Land Resource Misallocation Index	Urban Expenditure (East): Land Resource Misallocation Index 2	Urban Expenditure (East): Land Resource Misallocation Index 3	Urban Expenditure (East): Urban Sprawl	Urban Expenditure (East): Urban Sprawl Index	Urban Expenditure (East): Urban Sprawl (Light Sum)	Urban Expenditure (East): Urban Sprawl (Light Average)	Urban Expenditure (East): Infrastructure Investment	Urban Expenditure (East): Maintenance Cost
+										
+did	-18.65	0.0173	-2.142	1.185	0.0281***	0.0417	10,574***	-1.041***	190,050***	30,298***
+	(16.23)	(0.131)	(2.769)	(1.180)	(0.00713)	(0.0665)	(2,107)	(0.238)	(60,687)	(7,438)
+Constant	-77.94	0.436	133.8*	-27.62	0.646***	11.68***	-107,711*	34.40***	4.985e+06***	278,991
+	(438.5)	(3.543)	(75.60)	(32.16)	(0.193)	(1.795)	(56,910)	(6.421)	(1.639e+06)	(200,910)
+										
+Observations	1,215	1,215	1,140	1,200	1,215	1,215	1,215	1,215	1,215	1,215
+R-squared	0.694	0.207	0.113	0.121	0.905	0.843	0.929	0.964	0.765	0.772
+Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y
+Standard errors in parentheses										
+*** p<0.01, ** p<0.05, * p<0.1										

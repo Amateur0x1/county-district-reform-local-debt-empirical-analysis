@@ -6,25 +6,25 @@
 \ql VARIABLES\cell\qc Final Results Summary\cell\row
 \trowd\trgaph75\trleft-75\trqc\cellx1872\cellx5040
 \ql \cell\qc \cell\row
-\ql did\cell\qc -191.6***\cell\row
-\ql \cell\qc (51.16)\cell\row
-\ql pd\cell\qc -0.0163\cell\row
-\ql \cell\qc (0.0112)\cell\row
-\ql led\cell\qc 248.1**\cell\row
-\ql \cell\qc (102.5)\cell\row
-\ql fdi\cell\qc -433.9**\cell\row
-\ql \cell\qc (218.9)\cell\row
-\ql lfd\cell\qc 49.12\cell\row
-\ql \cell\qc (40.55)\cell\row
-\ql oei\cell\qc 157.4\cell\row
-\ql \cell\qc (126.8)\cell\row
-\ql isu\cell\qc -95.39***\cell\row
-\ql \cell\qc (36.33)\cell\row
-\ql Constant\cell\qc -2,094*\cell\row
-\ql \cell\qc (1,128)\cell\row
+\ql did\cell\qc -3,378\cell\row
+\ql \cell\qc (11,245)\cell\row
+\ql pd\cell\qc -4.558**\cell\row
+\ql \cell\qc (2.106)\cell\row
+\ql led\cell\qc -15,949\cell\row
+\ql \cell\qc (21,847)\cell\row
+\ql fdi\cell\qc -176,174***\cell\row
+\ql \cell\qc (45,030)\cell\row
+\ql lfd\cell\qc 30,744***\cell\row
+\ql \cell\qc (9,186)\cell\row
+\ql oei\cell\qc 125,622***\cell\row
+\ql \cell\qc (38,727)\cell\row
+\ql isu\cell\qc -18,711**\cell\row
+\ql \cell\qc (7,529)\cell\row
+\ql Constant\cell\qc 236,430\cell\row
+\ql \cell\qc (235,516)\cell\row
 \ql \cell\qc \cell\row
-\ql Observations\cell\qc 3,120\cell\row
-\ql R-squared\cell\qc 0.392\cell\row
+\ql Observations\cell\qc 1,905\cell\row
+\ql R-squared\cell\qc 0.531\cell\row
 \trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx5040
 \ql Controls\cell\qc N\cell\row
 \pard\qc

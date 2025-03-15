@@ -1,13 +1,13 @@
-	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)
-VARIABLES	Urban Expenditure: Industrial Land Transfer	Urban Expenditure: Land Resource Misallocation Index	Urban Expenditure: Land Resource Misallocation Index	Urban Expenditure: Urban Sprawl	Urban Expenditure: Urban Sprawl Index	Urban Expenditure: Urban Sprawl (Light Sum)	Urban Expenditure: Urban Sprawl (Light Average)	Urban Expenditure: Infrastructure Investment	Urban Expenditure: Maintenance Cost
-									
-did	-21.36**	0.188*	1.275	-0.00763*	-0.412***	12,819***	0.00230	0.184***	-191.6***
-	(8.389)	(0.111)	(2.657)	(0.00463)	(0.101)	(1,460)	(0.0132)	(0.0585)	(51.16)
-Constant	-409.9**	2.847	306.8***	0.448***	10.87***	109,470***	-3.613***	1.895	-2,094*
-	(184.9)	(2.447)	(58.58)	(0.102)	(2.236)	(32,194)	(0.291)	(1.290)	(1,128)
-									
-Observations	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120
-R-squared	0.696	0.138	0.363	0.855	0.598	0.906	0.976	0.743	0.392
-Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y
-Standard errors in parentheses									
-*** p<0.01, ** p<0.05, * p<0.1									
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)	(10)
+VARIABLES	Urban Expenditure: Industrial Land Transfer	Urban Expenditure: Land Resource Misallocation Index	Urban Expenditure: Land Resource Misallocation Index 2	Urban Expenditure: Land Resource Misallocation Index 3	Urban Expenditure: Urban Sprawl	Urban Expenditure: Urban Sprawl Index	Urban Expenditure: Urban Sprawl (Light Sum)	Urban Expenditure: Urban Sprawl (Light Average)	Urban Expenditure: Infrastructure Investment	Urban Expenditure: Maintenance Cost
+										
+did	-21.36**	0.188*	1.064	1.404*	-0.00763*	-0.412***	12,819***	0.397***	181,109***	9,635
+	(8.389)	(0.111)	(2.232)	(0.853)	(0.00463)	(0.101)	(1,460)	(0.145)	(37,308)	(7,233)
+Constant	-409.9**	2.847	100.1**	8.672	0.448***	10.87***	109,470***	34.46***	1.187e+06	144,049
+	(184.9)	(2.447)	(49.38)	(19.07)	(0.102)	(2.236)	(32,194)	(3.186)	(822,495)	(159,460)
+										
+Observations	3,120	3,120	2,685	3,015	3,120	3,120	3,120	3,120	3,120	3,120
+R-squared	0.696	0.138	0.083	0.097	0.855	0.598	0.906	0.953	0.780	0.597
+Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y
+Standard errors in parentheses										
+*** p<0.01, ** p<0.05, * p<0.1										

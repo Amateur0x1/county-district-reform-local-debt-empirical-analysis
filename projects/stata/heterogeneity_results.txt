@@ -1,23 +1,23 @@
-	(1)	(2)	(3)	(4)	(5)
-VARIABLES	Heterogeneity: Once vs Never	Heterogeneity: Multiple vs Never	Heterogeneity: Fiscal Pressure	Heterogeneity: Pre-New Budget Law (Before 2014)	Heterogeneity: Post-New Budget Law (2014 and Later)
-					
-1.did			568.1***		
-			(43.90)		
-fp			-33.65***		
-			(10.82)		
-1.did#c.fp			-149.9***		
-			(14.32)		
-did_once	165.9***				
-	(26.64)				
-did_multiple		432.9***			
-		(42.60)			
-did				101.3***	46.84
-				(23.83)	(36.09)
-Constant	-1,493***	-292.3	-1,675***	487.5	1,077
-	(558.4)	(554.7)	(576.4)	(403.4)	(846.0)
-					
-Observations	2,963	2,539	3,120	1,248	1,872
-R-squared	0.728	0.787	0.762	0.864	0.890
-Controls	Y	Y	Y	Y	Y
-Standard errors in parentheses					
-*** p<0.01, ** p<0.05, * p<0.1					
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)
+VARIABLES	Heterogeneity: Once vs Never	Heterogeneity: Multiple vs Never	Heterogeneity: Fiscal Pressure	Heterogeneity: Pre-New Budget Law (Before 2014)	Heterogeneity: Post-New Budget Law (2014 and Later)	Heterogeneity: Eastern Region	Heterogeneity: Midwest Region
+							
+1.did			568.1***				
+			(43.90)				
+fp			-33.65***				
+			(10.82)				
+1.did#c.fp			-149.9***				
+			(14.32)				
+did_once	165.9***						
+	(26.64)						
+did_multiple		432.9***					
+		(42.60)					
+did				101.3***	46.84	216.1***	164.8***
+				(23.83)	(36.09)	(39.94)	(34.40)
+Constant	-1,493***	-292.3	-1,675***	487.5	1,077	-3,405***	-435.3
+	(558.4)	(554.7)	(576.4)	(403.4)	(846.0)	(1,079)	(720.4)
+							
+Observations	2,963	2,539	3,120	1,248	1,872	1,215	1,905
+R-squared	0.728	0.787	0.762	0.864	0.890	0.789	0.736
+Controls	Y	Y	Y	Y	Y	Y	Y
+Standard errors in parentheses							
+*** p<0.01, ** p<0.05, * p<0.1							

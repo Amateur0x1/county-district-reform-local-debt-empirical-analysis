@@ -1,13 +1,13 @@
 	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)	(10)	(11)	(12)	(13)
 VARIABLES	Land Finance: Land Transfer Revenue	Land Finance: Land Transfer Area	Land Finance: Land Transfer Price	Land Finance: Commercial Land Transfer Revenue	Land Finance: Commercial Land Transfer Area	Land Finance: Commercial Land Transfer Price	Land Finance: Industrial Land Transfer Revenue	Land Finance: Industrial Land Transfer Area	Land Finance: Industrial Land Transfer Price	Land Finance: Service Land Transfer Revenue	Land Finance: Service Land Transfer Area	Land Finance: Service Land Transfer Price	Land Finance: Government Land Transfer Revenue
 													
-did	354,700***	-0.0455	320.7***	204,920***	22.03***	141.7	11,800**	-21.36**	89.63***	16.57	45.40	2,733	0.177**
-	(67,112)	(0.0537)	(97.41)	(61,787)	(6.392)	(140.7)	(5,710)	(8.389)	(26.59)	(11.89)	(32.18)	(2,494)	(0.0762)
-Constant	7.378e+06***	-2.904**	9,735***	6.660e+06***	67.14	18,409***	373,007***	-409.9**	1,395**	149.4	-495.3	-226,738***	6.361***
-	(1.480e+06)	(1.185)	(2,147)	(1.362e+06)	(140.9)	(3,103)	(125,884)	(184.9)	(586.3)	(262.2)	(709.5)	(54,984)	(1.680)
+did	354,700***	-32.18**	320.7***	204,920***	22.03***	141.7	11,800**	-21.36**	89.63***	4.569e+06	45.40	2,733	189,972***
+	(67,112)	(12.91)	(97.41)	(61,787)	(6.392)	(140.7)	(5,710)	(8.389)	(26.59)	(3.905e+06)	(32.18)	(2,494)	(52,186)
+Constant	7.378e+06***	-1,264***	9,735***	6.660e+06***	67.14	18,409***	373,007***	-409.9**	1,395**	-3.523e+08***	-495.3	-226,738***	471,488
+	(1.480e+06)	(284.6)	(2,147)	(1.362e+06)	(140.9)	(3,103)	(125,884)	(184.9)	(586.3)	(8.609e+07)	(709.5)	(54,984)	(1.150e+06)
 													
 Observations	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120	3,120
-R-squared	0.644	0.728	0.602	0.393	0.496	0.584	0.507	0.696	0.661	0.442	0.655	0.079	0.775
+R-squared	0.644	0.758	0.602	0.393	0.496	0.584	0.507	0.696	0.661	0.080	0.655	0.079	0.520
 Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y
 Standard errors in parentheses													
 *** p<0.01, ** p<0.05, * p<0.1													

@@ -1,25 +1,25 @@
 	(1)
 VARIABLES	Final Results Summary
 	
-did	-191.6***
-	(51.16)
-pd	-0.0163
-	(0.0112)
-led	248.1**
-	(102.5)
-fdi	-433.9**
-	(218.9)
-lfd	49.12
-	(40.55)
-oei	157.4
-	(126.8)
-isu	-95.39***
-	(36.33)
-Constant	-2,094*
-	(1,128)
+did	-3,378
+	(11,245)
+pd	-4.558**
+	(2.106)
+led	-15,949
+	(21,847)
+fdi	-176,174***
+	(45,030)
+lfd	30,744***
+	(9,186)
+oei	125,622***
+	(38,727)
+isu	-18,711**
+	(7,529)
+Constant	236,430
+	(235,516)
 	
-Observations	3,120
-R-squared	0.392
+Observations	1,905
+R-squared	0.531
 Controls	N
 Standard errors in parentheses	
 *** p<0.01, ** p<0.05, * p<0.1	

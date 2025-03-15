@@ -714,32 +714,6 @@ def process_land_sale_data(treat_zeros_as_missing: bool = True, replace_negative
         "广播、电视、电影和音像业", "体育", "公共设施管理业"
     ]
     
-    # 第二产业（制造业、采矿业、建筑业、公用事业）
-    secondary_industry = [
-        "采矿业", "煤炭开采和洗选业", "石油和天然气开采业", "黑色金属矿采选业", "有色金属矿采选业",
-        "非金属矿采选业", "其他采矿业", "农副食品加工业", "食品制造业", "饮料制造业", "烟草制品业",
-        "纺织业", "纺织服装、鞋、帽制造业", "皮革、毛皮、羽毛（绒）及其制造业", "木材加工及木、竹、藤、棕、草制品业",
-        "家具制造业", "造纸及纸质品业", "印刷业和记录媒体的复制", "文教体育用品制造业", "石油加工、炼焦及核燃料加工业",
-        "化学原料及化学制品制造业", "医药制造业", "化学纤维制造业", "橡胶制品业", "塑料制品业", "非金属矿物制品业",
-        "黑色金属冶炼及压延加工业", "有色金属冶炼及压延加工业", "金属制品业", "通用设备制造业", "专用设备制造业",
-        "交通运输设备制造业", "电气机械及器材制造业", "通讯设备、计算机及其他电子设备制造业", "仪器仪表及文化、办公用机械制造业",
-        "工艺品及其他制造业", "废弃资源和废旧材料回收加工业", "电力、燃气及水的生产和供应业", "电力、热力的生产和供应业",
-        "燃气生产和供应业", "水的生产和供应业", "建筑业", "房屋和土木工程业", "建筑安装业", "建筑装饰业", 
-        "钢压延加工", "炼钢", "炼铁", "水泥、石灰和石膏的制造", "水泥及石膏制品制造", "砖瓦、石材及其他建筑材料制造",
-        "船舶及浮动装置制造", "汽车制造", "摩托车制造", "铁路运输设备制造", "家用空气调节器制造", "家用制冷电器具制造"
-    ]
-
-    # 第三产业（服务业）
-    tertiary_industry = [
-        "道路运输业", "铁路运输业", "航空运输业", "水上运输业", "管道运输业", "城市公共交通业", "装卸搬运和其他运输服务业",
-        "仓储业", "邮政业", "电信和其他信息传输服务业", "计算机服务业", "软件业", "批发业", "零售业", "住宿业", 
-        "餐饮业", "金融业", "银行业", "证券业", "保险业", "其他金融服务", "房地产业", "租赁业", "商务服务业", 
-        "科技交流和推广服务业", "专业技术服务业", "居民服务业", "其他服务业", "教育业", "卫生", "社会保障业", 
-        "社会福利业", "文化艺术业", "广播、电视、电影和音像业", "体育", "娱乐业", "公共设施管理业", "环境管理业", 
-        "水利管理业", "公共管理和社会组织", "国家机构", "中国共产党机关", "群众团体、社会团体和宗教组织", 
-        "基层群众自治组织", "研究与试验发展", "新闻出版业", "信息传输、计算机服务和软件业"
-    ]
-    
     # 将制造业、房地产业、高科技产业、生产性服务业、消费性服务业视为各行业类别
     # 初始化各行业类别的总面积和总价值列
     result['制造业_总面积'] = 0
@@ -1148,13 +1122,43 @@ def process_regression_data():
         "永州"
     ]
 
+    # 东部城市列表（包括京津沪、辽宁、河北、山东、江苏、浙江、福建、广东和海南的城市）
+    eastern_cities = [
+        # 北京、天津、上海
+        "北京", "天津", "上海",
+        
+        # 辽宁省
+        "沈阳", "大连", "鞍山", "抚顺", "本溪", "丹东", "锦州", "营口", "阜新", "辽阳", "盘锦", "铁岭", "朝阳", "葫芦岛",
+        
+        # 河北省
+        "石家庄", "唐山", "秦皇岛", "邯郸", "邢台", "保定", "张家口", "承德", "沧州", "廊坊", "衡水",
+        
+        # 山东省
+        "济南", "青岛", "淄博", "枣庄", "东营", "烟台", "潍坊", "济宁", "泰安", "威海", "日照", "莱芜", "临沂", "德州", "聊城", "滨州", "菏泽",
+        
+        # 江苏省
+        "南京", "无锡", "徐州", "常州", "苏州", "南通", "连云港", "淮安", "盐城", "扬州", "镇江", "泰州", "宿迁",
+        
+        # 浙江省
+        "杭州", "宁波", "温州", "嘉兴", "湖州", "绍兴", "金华", "衢州", "舟山", "台州", "丽水",
+        
+        # 福建省
+        "福州", "厦门", "莆田", "三明", "泉州", "漳州", "南平", "龙岩", "宁德",
+        
+        # 广东省
+        "广州", "韶关", "深圳", "珠海", "汕头", "佛山", "江门", "湛江", "茂名", "肇庆", "惠州", "梅州", "汕尾", "河源", "阳江", "清远", "东莞", "中山", "潮州", "揭阳", "云浮",
+        
+        # 海南省
+        "海口", "三亚", "三沙", "儋州"
+    ]
+
     def get_city_type(city_name):
         """
         获取城市类型标识
         Args:
             city_name: 城市名称，可以带"市"也可以不带
         Returns:
-            dict: 包含三个标识的字典
+            dict: 包含四个标识的字典
         """
         # 去除"市"后缀进行匹配
         city = city_name.replace("市", "")
@@ -1163,7 +1167,8 @@ def process_regression_data():
         result = {
             "autonomous_region": 0,  # 自治区城市
             "sub_provincial": 0,     # 副省级和省会城市
-            "county_to_city": 0      # 地级市（撤县设市）
+            "county_to_city": 0,     # 地级市（撤县设市）
+            "region_type": 0         # 区域类型：1=东部，2=中西部
         }
         
         # 检查是否为自治区城市
@@ -1177,6 +1182,12 @@ def process_regression_data():
         # 检查是否为撤县设市
         if city_name in di_jishi_list:
             result["county_to_city"] = 1
+        
+        # 检查是否为东部城市
+        if city in eastern_cities:
+            result["region_type"] = 1  # 1表示东部
+        else:
+            result["region_type"] = 2  # 2表示中西部
             
         return result
 
@@ -1208,7 +1219,8 @@ def process_regression_data():
             'city': city,
             'autonomous_region': city_type['autonomous_region'],
             'sub_provincial': city_type['sub_provincial'],
-            'county_to_city': city_type['county_to_city']
+            'county_to_city': city_type['county_to_city'],
+            'region_type': city_type['region_type']
         })
     
     # 将城市类型数据转换为DataFrame
@@ -1223,7 +1235,7 @@ def process_regression_data():
     
     # 对指定变量进行对数处理
     # log_variables = ['ilta', 'clta', 'lta', 'iltr', 'cltr', 'ltr', 'light_sum', 'gltr']
-    log_variables = ['lta', 'gltr', 'light_average', 'ici']
+    log_variables = []
     for var in log_variables:
         if var in regression_cleaner.data.columns:
             # 确保变量值为正数（对数处理要求）
@@ -1243,11 +1255,286 @@ def process_regression_data():
     # 保存处理后的数据
     regression_cleaner.close_file_and_save()
 
+# 处理债务数据
+def process_debt_data():
+    input_file="projects/data/债务数据.xlsx"
+    output_file="projects/data/债务数据_cleaning.xlsx"
+    Tools.copy_file(input_file, output_file)
+    
+    # 读取债务数据
+    debt_data = pd.read_excel(output_file, sheet_name='Sheet1')
+    
+    # 提取年份和地级市列表
+    years_list = sorted(debt_data['年份'].unique().tolist())
+    cities_list = sorted(debt_data['地级市'].dropna().unique().tolist())
+    
+    # 清理数据
+    debt_cleaner = DataCleaner(
+        output_file,
+        sheet_name='Sheet1',
+    )
+
+    debt_cleaner.clean_column_data('地级市', '市')
+    
+    # 不再过滤地级市和年份，保留所有数据
+    # 重新排序数据
+    debt_cleaner.rearrange_data(
+        sort_priority=['省份', '地级市', '年份'],
+        sort_orders={}
+    )
+
+    # 对于有缺失值的列进行插值
+    if '财政自给率' in debt_data.columns:
+        debt_cleaner.interpolate_missing_data('财政自给率', '地级市', '年份')
+    debt_cleaner.interpolate_missing_data('城投平台有息债务亿元', '地级市', '年份')
+    if 'GDP亿元' in debt_data.columns:
+        debt_cleaner.interpolate_missing_data('GDP亿元', '地级市', '年份')
+    
+    # 按省份聚合地级市数据
+    debt_data = pd.read_excel(output_file, sheet_name='Sheet1')
+    
+    # 省份级别聚合
+    province_debt = debt_data.copy()
+    # 只保留有省份信息的行
+    province_debt = province_debt[province_debt['省份'].notna()]
+    
+    # 按省份和年份分组，计算城投平台有息债务总和
+    province_agg = province_debt.groupby(['省份', '年份'])['城投平台有息债务亿元'].sum().reset_index()
+    
+    # 定义东部省份列表
+    eastern_provinces = [
+        "北京市", "天津市", "上海市", "辽宁省", "河北省", "山东省", 
+        "江苏省", "浙江省", "福建省", "广东省", "海南省"
+    ]
+    
+    # 定义中部省份列表
+    central_provinces = [
+        "山西省", "吉林省", "黑龙江省", "安徽省", "江西省", 
+        "河南省", "湖北省", "湖南省"
+    ]
+    
+    # 定义西部省份列表
+    western_provinces = [
+        "内蒙古自治区", "广西壮族自治区", "重庆市", "四川省", "贵州省", 
+        "云南省", "西藏自治区", "陕西省", "甘肃省", "青海省", 
+        "宁夏回族自治区", "新疆维吾尔自治区"
+    ]
+    
+    # 添加区域分类
+    def get_region(province):
+        if province in eastern_provinces:
+            return "东部"
+        elif province in central_provinces:
+            return "中部"
+        elif province in western_provinces:
+            return "西部"
+        else:
+            return "未分类"
+    
+    province_agg['区域'] = province_agg['省份'].apply(get_region)
+    
+    # 将省份聚合数据写入原Excel文件
+    with pd.ExcelWriter(output_file, engine='openpyxl', mode='a') as writer:
+        province_agg.to_excel(writer, sheet_name='省份债务数据', index=False)
+    
+    # 按区域聚合数据
+    region_agg = province_agg.groupby(['区域', '年份'])['城投平台有息债务亿元'].sum().reset_index()
+    
+    # 全国维度聚合 - 按年份聚合所有省份数据
+    national_agg = province_agg.groupby('年份')['城投平台有息债务亿元'].sum().reset_index()
+    national_agg['区域'] = '全国'  # 添加一个区域列，标记为"全国"
+    
+    # 将全国聚合数据写入新的sheet
+    with pd.ExcelWriter(output_file, engine='openpyxl', mode='a') as writer:
+        national_agg.to_excel(writer, sheet_name='全国债务数据', index=False)
+    
+    # 合并区域数据（包含东中西部和全国）
+    combined_region_agg = pd.concat([region_agg, national_agg[['区域', '年份', '城投平台有息债务亿元']]])
+    
+    # 将合并后的区域数据写入区域年度债务数据sheet（不使用Sheet2）
+    with pd.ExcelWriter(output_file, engine='openpyxl', mode='a') as writer:
+        combined_region_agg.to_excel(writer, sheet_name='区域年度债务数据', index=False)
+    
+    # 省份总量聚合（不考虑年份维度）
+    province_total_agg = province_agg.groupby('省份')['城投平台有息债务亿元'].sum().reset_index()
+    # 添加区域分类
+    province_total_agg['区域'] = province_total_agg['省份'].apply(get_region)
+    # 按区域和省份债务总额降序排序
+    province_total_agg = province_total_agg.sort_values(by=['区域', '城投平台有息债务亿元'], ascending=[True, False])
+    
+    # 将省份总量数据写入新的sheet
+    with pd.ExcelWriter(output_file, engine='openpyxl', mode='a') as writer:
+        province_total_agg.to_excel(writer, sheet_name='省份债务总量', index=False)
+    
+    # 区域总量聚合（不考虑年份维度）
+    region_total_agg = province_total_agg.groupby('区域')['城投平台有息债务亿元'].sum().reset_index()
+    # 添加全国总量
+    national_total = pd.DataFrame({
+        '区域': ['全国'],
+        '城投平台有息债务亿元': [province_total_agg['城投平台有息债务亿元'].sum()]
+    })
+    region_total_agg = pd.concat([region_total_agg, national_total])
+    
+    # 将区域总量数据写入新的sheet
+    with pd.ExcelWriter(output_file, engine='openpyxl', mode='a') as writer:
+        region_total_agg.to_excel(writer, sheet_name='区域债务总量', index=False)
+    
+    # 关闭文件并保存
+    debt_cleaner.close_file_and_save()
+    
+    print("债务数据处理完成，已按省份聚合并创建东中西部区域聚合数据及全国总量数据。")
+    print("同时添加了省份债务总量（不分年份）和区域债务总量数据。")
+    print(f"输出文件: {output_file}")
+
+# 处理望城区数据
+def process_wangcheng_data():
+    input_file = "projects/data/土地出让true.csv"
+    output_file = "projects/data/望城区数据.xlsx"
+    
+    print("开始处理望城区土地出让数据...")
+    
+    # 读取土地出让数据
+    df = pd.read_csv(input_file, low_memory=False)
+    
+    # 过滤出望城区的数据
+    wangcheng_data = df[df['县'] == '望城区'].copy()
+    
+    print(f"望城区数据筛选结果: {len(wangcheng_data)} 条记录")
+    
+    if len(wangcheng_data) == 0:
+        print("未找到望城区的数据，请检查数据源或县名称是否正确")
+        return
+        
+    # 定义各种行业类别
+    manufacturing = [
+        "农副食品加工业", "食品制造业", "饮料制造业", "烟草制品业", "纺织业",
+        "纺织服装、鞋、帽制造业", "皮革、毛皮、羽毛（绒）及其制造业", "木材加工及木、竹、藤、棕、草制品业",
+        "家具制造业", "造纸及纸质品业", "印刷业和记录媒体的复制", "文教体育用品制造业",
+        "石油加工、炼焦及核燃料加工业", "化学原料及化学制品制造业", "医药制造业", "化学纤维制造业",
+        "橡胶制品业", "塑料制品业", "非金属矿物制品业", "黑色金属冶炼及压延加工业",
+        "有色金属冶炼及压延加工业", "金属制品业", "通用设备制造业", "专用设备制造业",
+        "交通运输设备制造业", "电气机械及器材制造业", "仪器仪表及文化、办公用机械制造业",
+        "通信设备、计算机及其他电子设备制造业", "废弃资源和废旧材料回收加工业"
+    ]
+
+    real_estate = ["房地产业"]
+
+    high_tech = [
+        "计算机服务业", "软件业", "电信和其他信息传输服务业", 
+        "通信设备、计算机及其他电子设备制造业", "研究与试验发展",
+        "科技交流和推广服务业", "专业技术服务业"
+    ]
+
+    producer_services = [
+        "道路运输业", "铁路运输业", "航空运输业", "管道运输业", 
+        "水上运输业", "仓储业", "邮政业", "银行业", "保险业",
+        "证券业", "商务服务业", "租赁业", "科技交流和推广服务业",
+        "环境管理业", "水利管理业"
+    ]
+
+    consumer_services = [
+        "餐饮业", "零售业", "住宿业", "居民服务业", "教育业",
+        "卫生", "社会保障业", "社会福利业", "娱乐业", "文化艺术业",
+        "广播、电视、电影和音像业", "体育", "公共设施管理业"
+    ]
+    
+    # 计算各行业总面积和总价值
+    result = pd.DataFrame()
+    result['年份'] = wangcheng_data['年份'].unique()
+    result = result.sort_values('年份')
+    
+    # 初始化各行业类别的总面积和总价值列
+    for industry_type in ['制造业', '房地产业', '高科技产业', '生产性服务业', '消费性服务业']:
+        result[f'{industry_type}_总面积'] = 0
+        result[f'{industry_type}_总价值'] = 0
+    
+    # 计算各行业数据
+    industry_mapping = {
+        '制造业': manufacturing,
+        '房地产业': real_estate,
+        '高科技产业': high_tech,
+        '生产性服务业': producer_services,
+        '消费性服务业': consumer_services
+    }
+    
+    for industry_type, industry_list in industry_mapping.items():
+        for year in result['年份']:
+            year_data = wangcheng_data[wangcheng_data['年份'] == year]
+            industry_data = year_data[year_data['行业分类'].isin(industry_list)]
+            
+            result.loc[result['年份'] == year, f'{industry_type}_总面积'] = industry_data['供地面积_公顷'].sum()
+            result.loc[result['年份'] == year, f'{industry_type}_总价值'] = (
+                industry_data['供地面积_公顷'] * industry_data['成交价格_万元']
+            ).sum()
+    
+    # 计算总供地面积和总价值
+    yearly_totals = wangcheng_data.groupby('年份').agg({
+        '供地面积_公顷': 'sum',
+        '成交价格_万元': 'sum'
+    }).reset_index()
+    result = result.merge(yearly_totals, on='年份', how='left')
+    
+    # 计算各行业占比和平均价格
+    for industry_type in ['制造业', '房地产业', '高科技产业', '生产性服务业', '消费性服务业']:
+        # 计算占比
+        result[f'{industry_type}_占比'] = (
+            result[f'{industry_type}_总面积'] / result['供地面积_公顷']
+        ).replace([np.inf, -np.inf], 0).fillna(0).round(4)
+        
+        # 计算平均价格
+        result[f'{industry_type}_平均价格'] = (
+            result[f'{industry_type}_总价值'] / result[f'{industry_type}_总面积']
+        ).replace([np.inf, -np.inf], 0).fillna(0).round(2)
+    
+    # 计算土地用途统计
+    land_use_pivot = pd.pivot_table(
+        wangcheng_data,
+        values=['供地面积_公顷', '成交价格_万元'],
+        index=['年份'],
+        columns=['土地用途'],
+        aggfunc='sum',
+        fill_value=0
+    ).reset_index()
+    
+    # 计算供地方式统计
+    supply_method_pivot = pd.pivot_table(
+        wangcheng_data,
+        values=['供地面积_公顷', '成交价格_万元'],
+        index=['年份'],
+        columns=['供地方式'],
+        aggfunc='sum',
+        fill_value=0
+    ).reset_index()
+    
+    # 创建一个Excel写入器
+    with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
+        # 写入年度行业统计
+        result.to_excel(writer, sheet_name='年度行业统计', index=False)
+        
+        # 写入土地用途统计
+        land_use_pivot.to_excel(writer, sheet_name='土地用途统计')
+        
+        # 写入供地方式统计
+        supply_method_pivot.to_excel(writer, sheet_name='供地方式统计')
+        
+        # 写入原始数据
+        wangcheng_data.to_excel(writer, sheet_name='原始数据', index=False)
+    
+    # 打印统计信息
+    for industry_type in ['制造业', '房地产业', '高科技产业', '生产性服务业', '消费性服务业']:
+        print(f"{industry_type}总面积大于0的记录数:", (result[f'{industry_type}_总面积'] > 0).sum())
+        print(f"{industry_type}总价值大于0的记录数:", (result[f'{industry_type}_总价值'] > 0).sum())
+    
+    print(f"\n望城区土地出让数据处理完成，已保存到: {output_file}")
+    print(f"共处理了 {len(wangcheng_data)} 条望城区土地出让记录")
+    print(f"数据年份范围: {wangcheng_data['年份'].min()} - {wangcheng_data['年份'].max()}")
+    
 def main():
     # Tools.copy_file(input_file, output_file)
     # process_data(output_file)
-    process_land_sale_data(treat_zeros_as_missing=True, replace_negative_with_nearest_positive=True)
-    # process_regression_data()
+    # process_land_sale_data()
+    # process_debt_data()
+    process_wangcheng_data()
 
 
 if __name__ == "__main__":

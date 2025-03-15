@@ -1,0 +1,21 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx7776\clbrdrt\brdrs\cellx13248\clbrdrt\brdrs\cellx18720\clbrdrt\brdrs\cellx25776
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7776\cellx13248\cellx18720\cellx25776
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7776\clbrdrb\brdrs\cellx13248\clbrdrb\brdrs\cellx18720\clbrdrb\brdrs\cellx25776
+\ql VARIABLES\cell\qc Fiscal Revenue (Midwest): Financing Cost\cell\qc Fiscal Revenue (Midwest): Tax Revenue\cell\qc Fiscal Revenue (Midwest): VAT Revenue\cell\qc Fiscal Revenue (Midwest): Economic Agglomeration\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7776\cellx13248\cellx18720\cellx25776
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc -0.763***\cell\qc -0.173\cell\qc 0.0268\cell\qc -22.26***\cell\row
+\ql \cell\qc (0.158)\cell\qc (0.258)\cell\qc (0.0421)\cell\qc (7.880)\cell\row
+\ql Constant\cell\qc -0.994\cell\qc -7.655\cell\qc 3.609***\cell\qc -156.0\cell\row
+\ql \cell\qc (3.315)\cell\qc (5.396)\cell\qc (0.881)\cell\qc (165.0)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 1,905\cell\qc 1,905\cell\qc 1,905\cell\qc 1,905\cell\row
+\ql R-squared\cell\qc 0.475\cell\qc 0.571\cell\qc 0.765\cell\qc 0.227\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7776\clbrdrb\brdrs\cellx13248\clbrdrb\brdrs\cellx18720\clbrdrb\brdrs\cellx25776
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

@@ -1,0 +1,13 @@
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)	(10)
+VARIABLES	Urban Expenditure (Midwest): Industrial Land Transfer	Urban Expenditure (Midwest): Land Resource Misallocation Index	Urban Expenditure (Midwest): Land Resource Misallocation Index 2	Urban Expenditure (Midwest): Land Resource Misallocation Index 3	Urban Expenditure (Midwest): Urban Sprawl	Urban Expenditure (Midwest): Urban Sprawl Index	Urban Expenditure (Midwest): Urban Sprawl (Light Sum)	Urban Expenditure (Midwest): Urban Sprawl (Light Average)	Urban Expenditure (Midwest): Infrastructure Investment	Urban Expenditure (Midwest): Maintenance Cost
+										
+did	-18.41**	0.303*	3.359	1.316	-0.0202***	-0.701***	8,589***	0.474***	179,240***	-3,378
+	(8.894)	(0.168)	(3.388)	(1.220)	(0.00498)	(0.158)	(1,868)	(0.124)	(47,435)	(11,245)
+Constant	-463.0**	4.236	92.93	20.52	0.942***	15.85***	24,560	-0.719	-1.018e+06	236,430
+	(186.3)	(3.527)	(70.67)	(26.09)	(0.104)	(3.300)	(39,126)	(2.599)	(993,439)	(235,516)
+										
+Observations	1,905	1,905	1,545	1,815	1,905	1,905	1,905	1,905	1,905	1,905
+R-squared	0.642	0.122	0.082	0.098	0.766	0.556	0.860	0.913	0.800	0.531
+Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y	Y
+Standard errors in parentheses										
+*** p<0.01, ** p<0.05, * p<0.1										

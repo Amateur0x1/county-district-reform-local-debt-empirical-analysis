@@ -1,0 +1,13 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	Fiscal Revenue (Midwest): Financing Cost	Fiscal Revenue (Midwest): Tax Revenue	Fiscal Revenue (Midwest): VAT Revenue	Fiscal Revenue (Midwest): Economic Agglomeration
+				
+did	-0.763***	-0.173	0.0268	-22.26***
+	(0.158)	(0.258)	(0.0421)	(7.880)
+Constant	-0.994	-7.655	3.609***	-156.0
+	(3.315)	(5.396)	(0.881)	(165.0)
+				
+Observations	1,905	1,905	1,905	1,905
+R-squared	0.475	0.571	0.765	0.227
+Controls	Y	Y	Y	Y
+Standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

@@ -1,0 +1,21 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx8064\clbrdrt\brdrs\cellx13824\clbrdrt\brdrs\cellx19728\clbrdrt\brdrs\cellx27504\clbrdrt\brdrs\cellx34848\clbrdrt\brdrs\cellx42336\clbrdrt\brdrs\cellx50112\clbrdrt\brdrs\cellx57456\clbrdrt\brdrs\cellx64944\clbrdrt\brdrs\cellx72288\clbrdrt\brdrs\cellx79200\clbrdrt\brdrs\cellx86256\clbrdrt\brdrs\cellx94032
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\qc (6)\cell\qc (7)\cell\qc (8)\cell\qc (9)\cell\qc (10)\cell\qc (11)\cell\qc (12)\cell\qc (13)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8064\cellx13824\cellx19728\cellx27504\cellx34848\cellx42336\cellx50112\cellx57456\cellx64944\cellx72288\cellx79200\cellx86256\cellx94032
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8064\clbrdrb\brdrs\cellx13824\clbrdrb\brdrs\cellx19728\clbrdrb\brdrs\cellx27504\clbrdrb\brdrs\cellx34848\clbrdrb\brdrs\cellx42336\clbrdrb\brdrs\cellx50112\clbrdrb\brdrs\cellx57456\clbrdrb\brdrs\cellx64944\clbrdrb\brdrs\cellx72288\clbrdrb\brdrs\cellx79200\clbrdrb\brdrs\cellx86256\clbrdrb\brdrs\cellx94032
+\ql VARIABLES\cell\qc Land Finance (East): Land Transfer Revenue\cell\qc Land Finance (East): Land Transfer Area\cell\qc Land Finance (East): Land Transfer Price\cell\qc Land Finance (East): Commercial Land Transfer Revenue\cell\qc Land Finance (East): Commercial Land Transfer Area\cell\qc Land Finance (East): Commercial Land Transfer Price\cell\qc Land Finance (East): Industrial Land Transfer Revenue\cell\qc Land Finance (East): Industrial Land Transfer Area\cell\qc Land Finance (East): Industrial Land Transfer Price\cell\qc Land Finance (East): Service Land Transfer Revenue\cell\qc Land Finance (East): Service Land Transfer Area\cell\qc Land Finance (East): Service Land Transfer Price\cell\qc Land Finance (East): Government Land Transfer Revenue\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8064\cellx13824\cellx19728\cellx27504\cellx34848\cellx42336\cellx50112\cellx57456\cellx64944\cellx72288\cellx79200\cellx86256\cellx94032
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc 480,212***\cell\qc -48.47*\cell\qc 249.2\cell\qc 291,753**\cell\qc 27.18**\cell\qc -174.1\cell\qc 313.2\cell\qc -18.65\cell\qc 6.674\cell\qc 1.145e+07\cell\qc 46.82\cell\qc 7,052\cell\qc 180,880*\cell\row
+\ql \cell\qc (157,092)\cell\qc (25.99)\cell\qc (217.3)\cell\qc (143,461)\cell\qc (13.45)\cell\qc (309.0)\cell\qc (10,195)\cell\qc (16.23)\cell\qc (32.65)\cell\qc (9.621e+06)\cell\qc (52.28)\cell\qc (6,144)\cell\qc (101,768)\cell\row
+\ql Constant\cell\qc 5.878e+06\cell\qc -1,338*\cell\qc 9,482\cell\qc 4.542e+06\cell\qc -321.0\cell\qc 23,330***\cell\qc 684,929**\cell\qc -77.94\cell\qc 2,504***\cell\qc -1.137e+09***\cell\qc -1,575\cell\qc -726,886***\cell\qc -4.608e+06*\cell\row
+\ql \cell\qc (4.243e+06)\cell\qc (701.9)\cell\qc (5,871)\cell\qc (3.875e+06)\cell\qc (363.4)\cell\qc (8,346)\cell\qc (275,371)\cell\qc (438.5)\cell\qc (882.0)\cell\qc (2.599e+08)\cell\qc (1,412)\cell\qc (165,949)\cell\qc (2.749e+06)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\qc 1,215\cell\row
+\ql R-squared\cell\qc 0.643\cell\qc 0.758\cell\qc 0.620\cell\qc 0.421\cell\qc 0.495\cell\qc 0.605\cell\qc 0.577\cell\qc 0.694\cell\qc 0.864\cell\qc 0.098\cell\qc 0.735\cell\qc 0.097\cell\qc 0.569\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8064\clbrdrb\brdrs\cellx13824\clbrdrb\brdrs\cellx19728\clbrdrb\brdrs\cellx27504\clbrdrb\brdrs\cellx34848\clbrdrb\brdrs\cellx42336\clbrdrb\brdrs\cellx50112\clbrdrb\brdrs\cellx57456\clbrdrb\brdrs\cellx64944\clbrdrb\brdrs\cellx72288\clbrdrb\brdrs\cellx79200\clbrdrb\brdrs\cellx86256\clbrdrb\brdrs\cellx94032
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}
