@@ -255,14 +255,18 @@ class DataCleaner:
     @timeit
     def create_did_variable(self, time_col: str, unit_col: str) -> None:
         """
-        创建DID变量
-        如果城市发生了撤县设区，那么从改革年份开始设置did=1，其他情况为0
+        创建DID变量及其组成部分
+        - treat: 是否为改革城市（1表示该城市在研究期间发生过改革）
+        - obi: 是否为改革后时期（1表示当前年份>=改革年份）
+        - did: treat * obi 的乘积
         
         参数:
             time_col: 时间列名（年份）
             unit_col: 单位列名（地级市）
         """
-        # 初始化did变量为0
+        # 初始化变量
+        self.data['treat'] = 0
+        self.data['obi'] = 0
         self.data['did'] = 0
         
         # 获取每个城市的改革时间
@@ -274,19 +278,25 @@ class DataCleaner:
             
             # 对每个发生改革的城市
             for city, reform_year in reform_years.items():
-                # 将改革年份及之后的所有年份的did设置为1
+                # 设置treat=1（表示该城市是改革城市）
+                self.data.loc[self.data[unit_col] == city, 'treat'] = 1
+                
+                # 设置obi=1（表示改革年份及之后的时期）
                 mask = (
                     (self.data[unit_col] == city) & 
-                    (self.data[time_col] >= reform_year)  # 改为>=，包含改革年份
+                    (self.data[time_col] >= reform_year)
                 )
-                self.data.loc[mask, 'did'] = 1
+                self.data.loc[mask, 'obi'] = 1
+                
+                # 计算did（treat和obi的乘积）
+                self.data['did'] = self.data['treat'] * self.data['obi']
         
         # 使用const.py中的城市顺序进行排序
         from const import Constant
         city_order = pd.CategoricalDtype(categories=Constant.cities, ordered=True)
         self.data[unit_col] = self.data[unit_col].astype(city_order)
         self.data = self.data.sort_values(by=[unit_col, time_col])
-        
+
     @timeit
     def replace_values_less_than_one(self, columns: List[str]) -> None:
         """

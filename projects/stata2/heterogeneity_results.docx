@@ -1,0 +1,29 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx7488\clbrdrt\brdrs\cellx15120\clbrdrt\brdrs\cellx19440\clbrdrt\brdrs\cellx23760\clbrdrt\brdrs\cellx31392
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7488\cellx15120\cellx19440\cellx23760\cellx31392
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7488\clbrdrb\brdrs\cellx15120\clbrdrb\brdrs\cellx19440\clbrdrb\brdrs\cellx23760\clbrdrb\brdrs\cellx31392
+\ql VARIABLES\cell\qc Heterogeneity: City Scale (Moderation)\cell\qc Heterogeneity: Population Agglomeration (Moderation)\cell\qc Heterogeneity: Eastern Region\cell\qc Heterogeneity: Midwest Region\cell\qc Heterogeneity: Population Agglomeration (Moderation)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx7488\cellx15120\cellx19440\cellx23760\cellx31392
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql cs\cell\qc -43.24***\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (12.47)\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql 1.did#c.cs\cell\qc 234.7***\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc (59.49)\cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql pad\cell\qc \cell\qc -249.0**\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (98.82)\cell\qc \cell\qc \cell\qc \cell\row
+\ql 1.did#c.pad\cell\qc \cell\qc 1,112***\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (94.96)\cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc \cell\qc \cell\qc 228.2***\cell\qc 155.2***\cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (40.44)\cell\qc (34.54)\cell\qc \cell\row
+\ql Constant\cell\qc -260.6\cell\qc -223.3\cell\qc -967.7**\cell\qc 197.2\cell\qc -292.5\cell\row
+\ql \cell\qc (353.7)\cell\qc (350.6)\cell\qc (490.7)\cell\qc (687.0)\cell\qc (355.6)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 3,120\cell\qc 3,120\cell\qc 1,215\cell\qc 1,905\cell\qc 3,120\cell\row
+\ql R-squared\cell\qc 0.752\cell\qc 0.761\cell\qc 0.783\cell\qc 0.733\cell\qc 0.761\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx7488\clbrdrb\brdrs\cellx15120\clbrdrb\brdrs\cellx19440\clbrdrb\brdrs\cellx23760\clbrdrb\brdrs\cellx31392
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

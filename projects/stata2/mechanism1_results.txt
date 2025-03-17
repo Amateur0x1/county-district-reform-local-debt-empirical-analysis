@@ -1,0 +1,13 @@
+	(1)	(2)
+VARIABLES	Mechanism 1: Land Resource Allocation Efficiency 1	Mechanism 1: Land Resource Allocation Efficiency 2
+		
+did	7.723	0.00352***
+	(8.730)	(0.000778)
+Constant	4.538	0.823***
+	(118.6)	(0.0106)
+		
+Observations	3,120	3,120
+R-squared	0.083	0.806
+Controls	Y	Y
+Standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

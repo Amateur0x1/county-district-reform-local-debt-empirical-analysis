@@ -1,0 +1,14 @@
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)	(10)	(11)	(12)	(13)	(14)	(15)	(16)	(17)	(18)	(19)	(20)	(21)	(22)	(23)	(24)
+VARIABLES	Mechanism2 Hetero: High fp - Debt	Mechanism2 Hetero: Low fp - Debt	Mechanism2 Hetero: High fp - FC	Mechanism2 Hetero: Low fp - FC	Mechanism2 Hetero: High LFD - Debt	Mechanism2 Hetero: Low LFD - Debt	Mechanism2 Hetero: High LFD - FC	Mechanism2 Hetero: Low LFD - FC	Mechanism2 Hetero: High EGP - Debt	Mechanism2 Hetero: Low EGP - Debt	Mechanism2 Hetero: High EGP - FC	Mechanism2 Hetero: Low EGP - FC	Mechanism2 Hetero: EGCS=1 - Debt	Mechanism2 Hetero: EGCS=0 - Debt	Mechanism2 Hetero: EGCS=1 - FC	Mechanism2 Hetero: EGCS=0 - FC	Mechanism2 Hetero: EGCH=1 - Debt	Mechanism2 Hetero: EGCH=0 - Debt	Mechanism2 Hetero: EGCH=1 - FC	Mechanism2 Hetero: EGCH=0 - FC	Mechanism2 Hetero: Pre-2014 - Debt	Mechanism2 Hetero: Post-2014 - Debt	Mechanism2 Hetero: Pre-2014 - FC	Mechanism2 Hetero: Post-2014 - FC
+																								
+ltr	0.000245**	9.49e-05*	5.67e-09	6.81e-10	9.61e-05*	0.000126**	2.97e-10	1.55e-09	0.000115**	7.22e-05	-2.35e-09	-0	0.000126**	9.34e-05**	-3.04e-10	2.15e-09**	2.87e-05	0.000145**	9.86e-10	1.20e-10	6.38e-05**	7.80e-05	-1.51e-09	1.40e-10
+	(0.000100)	(5.65e-05)	(5.26e-09)	(6.09e-10)	(5.77e-05)	(5.31e-05)	(6.68e-10)	(2.33e-09)	(5.52e-05)	(6.42e-05)	(2.02e-09)	(3.17e-10)	(5.47e-05)	(4.21e-05)	(7.19e-10)	(1.08e-09)	(3.04e-05)	(6.46e-05)	(7.77e-10)	(7.01e-10)	(2.83e-05)	(6.08e-05)	(2.00e-09)	(2.00e-10)
+1.did#c.ltr	0.000130	1.51e-05	-1.04e-08	-1.24e-09**	-1.12e-06	0.000235**	-7.31e-10	-5.10e-09	0.000180***	1.74e-05	-0	-1.23e-10	6.21e-06	0.000111	-6.65e-10	-1.13e-09	6.22e-05	2.71e-05	-1.59e-09**	-1.30e-09	0.000122***	9.65e-06	-1.61e-09	-4.83e-10**
+	(0.000159)	(5.60e-05)	(6.49e-09)	(5.59e-10)	(5.76e-05)	(0.000117)	(6.08e-10)	(5.65e-09)	(5.57e-05)	(6.96e-05)	(1.79e-09)	(3.56e-10)	(5.92e-05)	(6.99e-05)	(6.19e-10)	(1.32e-09)	(4.45e-05)	(6.61e-05)	(7.04e-10)	(8.09e-10)	(3.77e-05)	(6.60e-05)	(2.68e-09)	(2.26e-10)
+Constant	-2,273***	-5,532**	0.0386	0.0609	1,656	-2,072***	-0.0640	0.0946**	131.6	2,103*	0.113	-0.0263*	-2,523**	1,240	0.0155	-0.0178	629.5	-2,176**	0.0379	0.0119	586.9	648.3	0.179***	-0.0140**
+	(738.8)	(2,122)	(0.0424)	(0.0562)	(2,073)	(671.5)	(0.0489)	(0.0454)	(753.7)	(1,190)	(0.0713)	(0.0138)	(1,014)	(1,666)	(0.0380)	(0.0590)	(1,522)	(1,008)	(0.0505)	(0.0396)	(446.3)	(1,207)	(0.0653)	(0.00674)
+																								
+Observations	1,556	1,552	1,556	1,552	1,553	1,545	1,553	1,545	1,552	1,566	1,552	1,566	2,288	804	2,288	804	1,039	2,068	1,039	2,068	1,248	1,872	1,248	1,872
+R-squared	0.664	0.811	0.537	0.585	0.815	0.721	0.589	0.650	0.816	0.910	0.616	0.690	0.785	0.809	0.552	0.665	0.822	0.795	0.636	0.567	0.870	0.898	0.671	0.702
+Robust standard errors in parentheses																								
+*** p<0.01, ** p<0.05, * p<0.1																								

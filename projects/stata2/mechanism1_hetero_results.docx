@@ -1,0 +1,29 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx8208\clbrdrt\brdrs\cellx14400\clbrdrt\brdrs\cellx21600\clbrdrt\brdrs\cellx28080\clbrdrt\brdrs\cellx34416\clbrdrt\brdrs\cellx41616\clbrdrt\brdrs\cellx48816\clbrdrt\brdrs\cellx55872\clbrdrt\brdrs\cellx63936
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\qc (6)\cell\qc (7)\cell\qc (8)\cell\qc (9)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx14400\cellx21600\cellx28080\cellx34416\cellx41616\cellx48816\cellx55872\cellx63936
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx14400\clbrdrb\brdrs\cellx21600\clbrdrb\brdrs\cellx28080\clbrdrb\brdrs\cellx34416\clbrdrb\brdrs\cellx41616\clbrdrb\brdrs\cellx48816\clbrdrb\brdrs\cellx55872\clbrdrb\brdrs\cellx63936
+\ql VARIABLES\cell\qc Mech 1 Hetero: High Industry Upgrade (lrae)\cell\qc Mech 1 Hetero: Low Industry Upgrade (lrae)\cell\qc Mech 1 Hetero: Industry Upgrade Moderation (lrae)\cell\qc Mech 1 Hetero: High Population Inflow (lrae)\cell\qc Mech 1 Hetero: Low Population Inflow (lrae)\cell\qc Mech 1 Hetero: Industry Upgrade Moderation (lrae)\cell\qc Mech 1 Hetero: High Multi-Center Structure (lrae)\cell\qc Mech 1 Hetero: Low Multi-Center Structure (lrae)\cell\qc Mech 1 Hetero: Multi-Center Structure Moderation (lrae)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx8208\cellx14400\cellx21600\cellx28080\cellx34416\cellx41616\cellx48816\cellx55872\cellx63936
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql isu\cell\qc \cell\qc \cell\qc 11.99*\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (6.482)\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql 1.did#c.isu\cell\qc \cell\qc \cell\qc -6.504\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc (17.35)\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc -2.416\cell\qc 0.314\cell\qc \cell\qc 4.146\cell\qc 0.0192\cell\qc \cell\qc 14.69\cell\qc -0.861\cell\qc \cell\row
+\ql \cell\qc (18.28)\cell\qc (4.374)\cell\qc \cell\qc (25.03)\cell\qc (3.901)\cell\qc \cell\qc (17.46)\cell\qc (2.368)\cell\qc \cell\row
+\ql mc\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc 21.14\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc (30.29)\cell\row
+\ql 1.did#c.mc\cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc 17.51\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc (39.42)\cell\row
+\ql Constant\cell\qc -63.74\cell\qc -12.88\cell\qc -13.98\cell\qc -302.9\cell\qc 36.68\cell\qc 0.795***\cell\qc -120.8\cell\qc -3.088\cell\qc 0.161\cell\row
+\ql \cell\qc (353.9)\cell\qc (49.04)\cell\qc (119.3)\cell\qc (592.5)\cell\qc (54.64)\cell\qc (0.0112)\cell\qc (371.5)\cell\qc (26.67)\cell\qc (119.4)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 1,557\cell\qc 1,550\cell\qc 3,120\cell\qc 997\cell\qc 2,116\cell\qc 3,120\cell\qc 1,555\cell\qc 1,560\cell\qc 3,120\cell\row
+\ql R-squared\cell\qc 0.259\cell\qc 0.188\cell\qc 0.084\cell\qc 0.184\cell\qc 0.164\cell\qc 0.811\cell\qc 0.162\cell\qc 0.314\cell\qc 0.083\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx8208\clbrdrb\brdrs\cellx14400\clbrdrb\brdrs\cellx21600\clbrdrb\brdrs\cellx28080\clbrdrb\brdrs\cellx34416\clbrdrb\brdrs\cellx41616\clbrdrb\brdrs\cellx48816\clbrdrb\brdrs\cellx55872\clbrdrb\brdrs\cellx63936
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

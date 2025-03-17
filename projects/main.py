@@ -5,6 +5,29 @@ import pandas as pd
 from const import Constant
 from lib.csv_writer import CSVWriter
 
+# 创建面板数据框架的辅助函数
+def create_panel_dataframe(cities, years, city_col='name', year_col='year'):
+    """
+    创建完整的面板数据框架
+    
+    参数：
+        cities: 城市列表
+        years: 年份列表
+        city_col: 城市列名
+        year_col: 年份列名
+    
+    返回：
+        pandas.DataFrame: 包含所有城市和年份组合的面板数据
+    """
+    panel_data = []
+    for city in cities:
+        for year in sorted(years):
+            panel_data.append({
+                city_col: city,
+                year_col: year
+            })
+    return pd.DataFrame(panel_data)
+
 class DataTransform:
     def __init__(self, data):
         self.data = data
@@ -212,6 +235,165 @@ def process_city_expansion_index_data(file_name, cities, years):
 
     # write data to sheet '城市蔓延'
     city_expansion_index_cleaner.close_file_and_save()
+
+# 处理多中心数据
+def process_multi_center_data(file_name, cities, years):
+    multi_center_cleaner = DataCleaner(
+        file_name,
+        sheet_name='多中心数据',
+    )
+
+    multi_center_cleaner.clean_column_data('地级市名称', '市')
+    multi_center_cleaner.clean_data_keep_values('地级市名称', cities)
+    multi_center_cleaner.clean_data_keep_values('年份', years)
+
+    multi_center_cleaner.rearrange_data(
+        sort_priority=['地级市名称', '年份'],
+        sort_orders={'地级市名称': cities, '年份': years}
+    )
+
+    # write data to sheet '多中心数据'
+    multi_center_cleaner.close_file_and_save()
+
+# 处理土地配置效率数据
+def process_land_configuration_efficiency_data(file_name, cities, years):
+    # 首先创建完整的面板数据框架
+    panel_df = create_panel_dataframe(cities, years)
+    
+    # 读取和清理土地配置效率数据
+    land_configuration_efficiency_cleaner = DataCleaner(
+        file_name,
+        sheet_name='土地配置效率',
+    )
+
+    # 清理原始数据中的城市名和年份
+    land_configuration_efficiency_cleaner.clean_column_data('name', '市')
+    
+    # 获取原始数据
+    original_data = land_configuration_efficiency_cleaner.data.copy()
+    
+    # 确保year列为数值类型
+    panel_df['year'] = pd.to_numeric(panel_df['year'], errors='coerce')
+    original_data['year'] = pd.to_numeric(original_data['year'], errors='coerce')
+    
+    # 记录原始数据中每个城市的可用年份数量
+    data_availability = original_data.groupby('name').size()
+    print(f"\n土地配置效率数据可用性统计:")
+    print(f"总城市数: {len(cities)}")
+    print(f"有数据的城市数: {len(data_availability)}")
+    print(f"平均每个城市的数据年份数: {data_availability.mean():.2f}")
+    
+    # 合并数据，使用left join保留所有面板数据记录
+    merged_data = pd.merge(
+        panel_df,
+        original_data,
+        on=['name', 'year'],
+        how='left'  # 使用left join保留所有城市和年份组合
+    )
+    
+    # 确保所有城市都在数据中
+    missing_cities = set(cities) - set(merged_data['name'].unique())
+    if missing_cities:
+        print("\n警告：以下城市完全缺失数据：")
+        print(sorted(missing_cities))
+    
+    # 将缺失值填充为0
+    numeric_columns = merged_data.select_dtypes(include=['int64', 'float64']).columns
+    merged_data[numeric_columns] = merged_data[numeric_columns].fillna(0)
+    
+    # 更新清理器中的数据
+    land_configuration_efficiency_cleaner.data = merged_data
+    
+    # 按指定顺序排序
+    land_configuration_efficiency_cleaner.rearrange_data(
+        sort_priority=['name', 'year'],
+        sort_orders={'name': cities, 'year': years}
+    )
+    
+    # 打印数据覆盖情况
+    total_expected = len(cities) * len(years)
+    actual_records = len(original_data)  # 使用原始数据的记录数
+    coverage = (actual_records / total_expected) * 100
+    print(f"\n数据覆盖情况:")
+    print(f"预期记录数: {total_expected}")
+    print(f"实际记录数: {actual_records}")
+    print(f"数据覆盖率: {coverage:.2f}%")
+    
+    # 分年度统计数据可用性
+    yearly_coverage = original_data.groupby('year').size()  # 使用原始数据统计
+    print("\n各年度数据覆盖情况:")
+    for year in sorted(years):
+        year_count = yearly_coverage.get(year, 0)
+        year_coverage = (year_count / len(cities)) * 100
+        print(f"{year}年: {year_count}/{len(cities)} 城市 ({year_coverage:.2f}%)")
+    
+    # write data to sheet '土地配置效率'
+    land_configuration_efficiency_cleaner.close_file_and_save()
+
+# 处理人口流动数据
+def process_population_flow_data(file_name, cities, years):
+    population_flow_cleaner = DataCleaner(
+        file_name,
+        sheet_name='人口流动',
+    )
+
+    population_flow_cleaner.clean_column_data('地级市', '市')
+    population_flow_cleaner.clean_data_keep_values('地级市', cities)
+    population_flow_cleaner.clean_data_keep_values('year', years)
+
+    population_flow_cleaner.rearrange_data(
+        sort_priority=['地级市', 'year'],
+        sort_orders={'地级市': cities, 'year': years}
+    )
+
+    # write data to sheet '人口流动'
+    population_flow_cleaner.close_file_and_save()
+
+# 处理经济增长目标约束数据
+def process_growth_target_constraint_data(file_name, cities, years):
+    growth_target_cleaner = DataCleaner(
+        file_name,
+        sheet_name='经济增长目标约束',
+    )
+
+    growth_target_cleaner.clean_column_data('城市', '市')
+    growth_target_cleaner.clean_data_keep_values('城市', cities)
+    growth_target_cleaner.clean_data_keep_values('年份', years)
+
+    growth_target_cleaner.rearrange_data(
+        sort_priority=['城市', '年份'],
+        sort_orders={'城市': cities, '年份': years}
+    )
+
+    # write data to sheet '土地配置效率'
+    growth_target_cleaner.close_file_and_save()
+
+# 处理城市规模数据
+def process_city_scale_data(file_name, cities, years):
+    city_scale_cleaner = DataCleaner(
+        file_name,
+        sheet_name='城市规模',
+    )
+
+    city_scale_cleaner.clean_column_data('name', '市')
+    city_scale_cleaner.clean_data_keep_values('name', cities)
+    city_scale_cleaner.clean_data_keep_values('year', years)
+
+    # 对2012和2013年的重复数据取均值
+    # 获取所有数值列（排除name和year列）
+    value_columns = [col for col in city_scale_cleaner.data.columns if col not in ['name', 'year']]
+    
+    # 按城市和年份分组计算均值
+    city_scale_cleaner.data = city_scale_cleaner.data.groupby(['name', 'year'])[value_columns].mean().reset_index()
+
+    city_scale_cleaner.rearrange_data(
+        sort_priority=['name', 'year'],
+        sort_orders={'name': cities, 'year': years}
+    )
+
+    # write data to sheet '城市规模'
+    city_scale_cleaner.close_file_and_save()
+
 
 # 处理灯光总和数据
 def process_light_sum_data(file_name, cities, years):
@@ -491,6 +673,7 @@ def process_finance_cost_data(file_name, cities, years):
     # 保存数据
     finance_cost_cleaner.close_file_and_save()
 
+
 def process_data(file_name):
     # process_economic_target_data(file_name, Constant.cities, Constant.years)
     # process_province_target_data(file_name, Constant.provinces, Constant.years)
@@ -509,7 +692,13 @@ def process_data(file_name):
     # process_city_expenditure_data(file_name, Constant.cities, Constant.years)
     # process_finance_cost_data(file_name, Constant.cities, Constant.years)
     # process_city_expansion_data(file_name, Constant.cities, Constant.years)
-    process_city_expansion_index_data(file_name, Constant.cities, Constant.years)
+    # process_city_expansion_index_data(file_name, Constant.cities, Constant.years)
+    # process_multi_center_data(file_name, Constant.cities, Constant.years)
+    # process_city_scale_data(file_name, Constant.cities, Constant.years)
+    # process_population_flow_data(file_name, Constant.cities, Constant.years)
+    # process_growth_target_constraint_data(file_name, Constant.cities, Constant.years)
+    # process_economic_target_data(file_name, Constant.cities, Constant.years)
+    process_land_configuration_efficiency_data(file_name, Constant.cities, Constant.years)
 
 # 土地出让数据
 def process_land_sale_data(treat_zeros_as_missing: bool = True, replace_negative_with_nearest_positive: bool = False):
@@ -1063,14 +1252,29 @@ def process_land_sale_data(treat_zeros_as_missing: bool = True, replace_negative
 
 # 处理回归数据
 def process_regression_data():
-    input_file = "projects/data/会总数据.xlsx"
-    output_file = "projects/data/会总数据clean.xlsx"
+    input_file = "projects/data/会总数据2.xlsx"
+    output_file = "projects/data/会总数据2clean.xlsx"
     Tools.copy_file(input_file, output_file)
 
     regression_cleaner = DataCleaner(
         output_file,
         sheet_name='回归数据',
     )
+
+    # 处理 #DIV/0! 错误
+    data = regression_cleaner.data.copy()
+    
+    # 获取所有数值列
+    numeric_columns = data.select_dtypes(include=['int64', 'float64']).columns
+    
+    # 对每个数值列进行处理
+    for col in numeric_columns:
+        # 将 #DIV/0! 替换为 NaN，然后填充为 0
+        data[col] = pd.to_numeric(data[col].replace('#DIV/0!', np.nan), errors='coerce')
+        data[col] = data[col].fillna(0)
+    
+    # 更新清理后的数据
+    regression_cleaner.data = data
 
     autonomous_region_cities = [
     # 广西壮族自治区
@@ -1534,10 +1738,11 @@ def main():
     # process_data(output_file)
     # process_land_sale_data()
     # process_debt_data()
-    process_wangcheng_data()
+    # process_wangcheng_data()
+    process_regression_data()
 
 
 if __name__ == "__main__":
-    input_file = "projects/data/data_copy.xlsx"
-    output_file = "projects/data/data_cleaning.xlsx"
+    input_file = "projects/data/data2_copy.xlsx"
+    output_file = "projects/data/data2_cleaning.xlsx"
     main()

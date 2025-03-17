@@ -1,0 +1,21 @@
+	(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)	(9)
+VARIABLES	Mech 1 Hetero: High Industry Upgrade (lrae)	Mech 1 Hetero: Low Industry Upgrade (lrae)	Mech 1 Hetero: Industry Upgrade Moderation (lrae)	Mech 1 Hetero: High Population Inflow (lrae)	Mech 1 Hetero: Low Population Inflow (lrae)	Mech 1 Hetero: Industry Upgrade Moderation (lrae)	Mech 1 Hetero: High Multi-Center Structure (lrae)	Mech 1 Hetero: Low Multi-Center Structure (lrae)	Mech 1 Hetero: Multi-Center Structure Moderation (lrae)
+									
+isu			11.99*						
+			(6.482)						
+1.did#c.isu			-6.504						
+			(17.35)						
+did	-2.416	0.314		4.146	0.0192		14.69	-0.861	
+	(18.28)	(4.374)		(25.03)	(3.901)		(17.46)	(2.368)	
+mc									21.14
+									(30.29)
+1.did#c.mc									17.51
+									(39.42)
+Constant	-63.74	-12.88	-13.98	-302.9	36.68	0.795***	-120.8	-3.088	0.161
+	(353.9)	(49.04)	(119.3)	(592.5)	(54.64)	(0.0112)	(371.5)	(26.67)	(119.4)
+									
+Observations	1,557	1,550	3,120	997	2,116	3,120	1,555	1,560	3,120
+R-squared	0.259	0.188	0.084	0.184	0.164	0.811	0.162	0.314	0.083
+Controls	Y	Y	Y	Y	Y	Y	Y	Y	Y
+Standard errors in parentheses									
+*** p<0.01, ** p<0.05, * p<0.1									

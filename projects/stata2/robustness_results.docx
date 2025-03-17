@@ -1,0 +1,23 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx4752\clbrdrt\brdrs\cellx8352\clbrdrt\brdrs\cellx14688\clbrdrt\brdrs\cellx20592\clbrdrt\brdrs\cellx26784
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\qc (5)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx4752\cellx8352\cellx14688\cellx20592\cellx26784
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx4752\clbrdrb\brdrs\cellx8352\clbrdrb\brdrs\cellx14688\clbrdrb\brdrs\cellx20592\clbrdrb\brdrs\cellx26784
+\ql VARIABLES\cell\qc Robustness: PSM-DID\cell\qc Robustness: Placebo Test\cell\qc Robustness: Excluding Sub-Provincial Cities\cell\qc Robustness: Excluding Autonomous Regions\cell\qc Robustness: Excluding Interfering Policies\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx4752\cellx8352\cellx14688\cellx20592\cellx26784
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql did\cell\qc 157.3***\cell\qc \cell\qc 77.82***\cell\qc 187.9***\cell\qc 202.3***\cell\row
+\ql \cell\qc (36.78)\cell\qc \cell\qc (19.03)\cell\qc (26.61)\cell\qc (28.73)\cell\row
+\ql pseudo_did\cell\qc \cell\qc -13.72\cell\qc \cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (14.22)\cell\qc \cell\qc \cell\qc \cell\row
+\ql Constant\cell\qc 484.8***\cell\qc -146.6\cell\qc -2,423***\cell\qc -134.5\cell\qc -269.0\cell\row
+\ql \cell\qc (16.12)\cell\qc (357.8)\cell\qc (368.0)\cell\qc (358.1)\cell\qc (381.6)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 1,940\cell\qc 3,120\cell\qc 2,745\cell\qc 2,880\cell\qc 2,790\cell\row
+\ql R-squared\cell\qc 0.805\cell\qc 0.745\cell\qc 0.703\cell\qc 0.758\cell\qc 0.750\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx4752\clbrdrb\brdrs\cellx8352\clbrdrb\brdrs\cellx14688\clbrdrb\brdrs\cellx20592\clbrdrb\brdrs\cellx26784
+\ql Controls\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\qc Y\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

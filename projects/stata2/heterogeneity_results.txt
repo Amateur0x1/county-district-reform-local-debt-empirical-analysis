@@ -1,0 +1,21 @@
+	(1)	(2)	(3)	(4)	(5)
+VARIABLES	Heterogeneity: City Scale (Moderation)	Heterogeneity: Population Agglomeration (Moderation)	Heterogeneity: Eastern Region	Heterogeneity: Midwest Region	Heterogeneity: Population Agglomeration (Moderation)
+					
+cs	-43.24***				
+	(12.47)				
+1.did#c.cs	234.7***				
+	(59.49)				
+pad		-249.0**			
+		(98.82)			
+1.did#c.pad		1,112***			
+		(94.96)			
+did			228.2***	155.2***	
+			(40.44)	(34.54)	
+Constant	-260.6	-223.3	-967.7**	197.2	-292.5
+	(353.7)	(350.6)	(490.7)	(687.0)	(355.6)
+					
+Observations	3,120	3,120	1,215	1,905	3,120
+R-squared	0.752	0.761	0.783	0.733	0.761
+Controls	Y	Y	Y	Y	Y
+Standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					
